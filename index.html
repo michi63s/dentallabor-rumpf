@@ -48,31 +48,87 @@
       animation: drift-3 18s ease-in-out infinite alternate;
     }
     @keyframes drift-1 {
-      0%   { transform: translate(0, 0) scale(1); }
-      33%  { transform: translate(200px, 150px) scale(1.15); }
-      66%  { transform: translate(-100px, 250px) scale(0.9); }
-      100% { transform: translate(150px, -80px) scale(1.05); }
+      0%   { transform: translate(calc(0px + var(--scroll-shift-x)), calc(0px + var(--scroll-shift-y))) scale(1); }
+      33%  { transform: translate(calc(200px + var(--scroll-shift-x)), calc(150px + var(--scroll-shift-y))) scale(1.15); }
+      66%  { transform: translate(calc(-100px + var(--scroll-shift-x)), calc(250px + var(--scroll-shift-y))) scale(0.9); }
+      100% { transform: translate(calc(150px + var(--scroll-shift-x)), calc(-80px + var(--scroll-shift-y))) scale(1.05); }
     }
     @keyframes drift-2 {
-      0%   { transform: translate(0, 0) scale(1); }
-      33%  { transform: translate(-180px, -120px) scale(1.2); }
-      66%  { transform: translate(120px, -200px) scale(0.85); }
-      100% { transform: translate(-60px, 160px) scale(1.1); }
+      0%   { transform: translate(calc(0px + var(--scroll-shift-x)), calc(0px + var(--scroll-shift-y))) scale(1); }
+      33%  { transform: translate(calc(-180px + var(--scroll-shift-x)), calc(-120px + var(--scroll-shift-y))) scale(1.2); }
+      66%  { transform: translate(calc(120px + var(--scroll-shift-x)), calc(-200px + var(--scroll-shift-y))) scale(0.85); }
+      100% { transform: translate(calc(-60px + var(--scroll-shift-x)), calc(160px + var(--scroll-shift-y))) scale(1.1); }
     }
     @keyframes drift-3 {
-      0%   { transform: translate(0, 0) scale(1); }
-      33%  { transform: translate(160px, -100px) scale(1.1); }
-      66%  { transform: translate(-200px, 80px) scale(1.2); }
-      100% { transform: translate(100px, -180px) scale(0.9); }
+      0%   { transform: translate(calc(0px + var(--scroll-shift-x)), calc(0px + var(--scroll-shift-y))) scale(1); }
+      33%  { transform: translate(calc(160px + var(--scroll-shift-x)), calc(-100px + var(--scroll-shift-y))) scale(1.1); }
+      66%  { transform: translate(calc(-200px + var(--scroll-shift-x)), calc(80px + var(--scroll-shift-y))) scale(1.2); }
+      100% { transform: translate(calc(100px + var(--scroll-shift-x)), calc(-180px + var(--scroll-shift-y))) scale(0.9); }
     }
 
     /* Hide blobs on dark sections so they don't bleed oddly */
     @media (prefers-reduced-motion: reduce) {
       .blob { display: none; }
     }
+
+    .blob-1 {
+      --scroll-shift-x: 0px;
+      --scroll-shift-y: 0px;
+    }
+    .blob-2 {
+      --scroll-shift-x: 0px;
+      --scroll-shift-y: 0px;
+    }
+    .blob-3 {
+      --scroll-shift-x: 0px;
+      --scroll-shift-y: 0px;
+    }
+
+    /* Playful floating teeth GIF */
+    .teeth-float {
+      position: fixed;
+      top: 40px;
+      left: 40px;
+      width: 88px;
+      z-index: 4;
+      opacity: 0.55;
+      pointer-events: none;
+      will-change: transform, opacity;
+      mix-blend-mode: multiply;
+      filter: saturate(0.9);
+    }
+
+    .teeth-float img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transform-origin: center;
+    }
+
+    /* Keep the teeth behind actual content but above section backgrounds */
+    nav,
+    section > div,
+    footer > div {
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (max-width: 768px) {
+      .teeth-float {
+        width: 58px;
+        opacity: 0.34;
+      }
+    }
+
   </style>
 </head>
 <body class="bg-white text-slate-900 antialiased overflow-x-hidden">
+
+  <div class="teeth-float" aria-hidden="true">
+    <img src="gebiss.gif" alt="">
+  </div>
+
+
 
   <!-- Background blobs -->
   <div class="blob blob-1" aria-hidden="true"></div>
@@ -912,5 +968,129 @@
       });
     })();
   </script>
+
+  <script>
+    (function () {
+      const el = document.querySelector('.teeth-float');
+      const img = el ? el.querySelector('img') : null;
+      if (!el || !img) return;
+
+      let x = 40;
+      let y = 40;
+      let vx = 0.72;
+      let vy = 0.52;
+      let direction = 1;
+      let targetOpacity = window.innerWidth < 768 ? 0.34 : 0.55;
+      let currentOpacity = 0;
+      let visibleFrames = 0;
+      let hiddenFrames = 0;
+
+      function isLightArea(sampleX, sampleY) {
+        const previousVisibility = el.style.visibility;
+        el.style.visibility = 'hidden';
+        const hit = document.elementFromPoint(sampleX, sampleY);
+        el.style.visibility = previousVisibility || 'visible';
+
+        if (!hit) return true;
+
+        const darkContainer = hit.closest('#prozess, #karriere, .bg-slate-900, .bg-slate-800, .bg-blue-600');
+        return !darkContainer;
+      }
+
+      function isNearViewportEdge(sampleX, sampleY) {
+        const marginX = window.innerWidth * 0.18;
+        const marginY = window.innerHeight * 0.16;
+        return (
+          sampleX < marginX ||
+          sampleX > window.innerWidth - marginX ||
+          sampleY < marginY ||
+          sampleY > window.innerHeight - marginY
+        );
+      }
+
+      function flipDirection() {
+        direction *= -1;
+        img.style.transform = `scaleX(${direction})`;
+      }
+
+      function tick() {
+        const w = el.offsetWidth;
+        const h = el.offsetHeight;
+        const maxX = window.innerWidth - w;
+        const maxY = window.innerHeight - h;
+
+        x += vx;
+        y += vy;
+
+        if (x <= 0 || x >= maxX) {
+          vx *= -1;
+          x = Math.max(0, Math.min(x, maxX));
+          flipDirection();
+        }
+
+        if (y <= 0 || y >= maxY) {
+          vy *= -1;
+          y = Math.max(0, Math.min(y, maxY));
+        }
+
+        const sampleX = Math.max(0, Math.min(window.innerWidth - 1, x + w * 0.5));
+        const sampleY = Math.max(0, Math.min(window.innerHeight - 1, y + h * 0.5));
+
+        const lightArea = isLightArea(sampleX, sampleY);
+        const nearEdge = isNearViewportEdge(sampleX, sampleY);
+
+        const baseOpacity = window.innerWidth < 768 ? 0.34 : 0.55;
+
+        if (lightArea && nearEdge) {
+          visibleFrames += 1;
+          hiddenFrames = 0;
+        } else {
+          hiddenFrames += 1;
+          visibleFrames = 0;
+        }
+
+        const shouldShow = visibleFrames > 8 && hiddenFrames < 2;
+
+        targetOpacity = shouldShow ? baseOpacity : 0;
+        currentOpacity += (targetOpacity - currentOpacity) * 0.075;
+
+        el.style.opacity = currentOpacity.toFixed(3);
+        el.style.transform = `translate(${x}px, ${y}px)`;
+
+        requestAnimationFrame(tick);
+      }
+
+      img.style.transform = 'scaleX(1)';
+      requestAnimationFrame(tick);
+    })();
+  </script>
+
+
+  <script>
+    (function () {
+      const blob1 = document.querySelector('.blob-1');
+      const blob2 = document.querySelector('.blob-2');
+      const blob3 = document.querySelector('.blob-3');
+      if (!blob1 || !blob2 || !blob3) return;
+
+      function updateBlobScroll() {
+        const scrollY = window.scrollY || window.pageYOffset || 0;
+
+        blob1.style.setProperty('--scroll-shift-x', `${scrollY * 0.08}px`);
+        blob1.style.setProperty('--scroll-shift-y', `${scrollY * 0.16}px`);
+
+        blob2.style.setProperty('--scroll-shift-x', `${scrollY * -0.06}px`);
+        blob2.style.setProperty('--scroll-shift-y', `${scrollY * -0.14}px`);
+
+        blob3.style.setProperty('--scroll-shift-x', `${scrollY * 0.04}px`);
+        blob3.style.setProperty('--scroll-shift-y', `${scrollY * -0.1}px`);
+      }
+
+      updateBlobScroll();
+      window.addEventListener('scroll', updateBlobScroll, { passive: true });
+      window.addEventListener('resize', updateBlobScroll);
+    })();
+  </script>
+
 </body>
 </html>

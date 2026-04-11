@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dentallabor Rumpf – Zahntechnikermeister Nierstein</title>
+  <meta name="description" content="Hochwertiger Zahnersatz aus Meisterhand. Inhabergeführtes Dentallabor in Nierstein für Zahnarztpraxen in Rheinhessen und Rhein-Main. Florian Rumpf, Zahntechnikermeister.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+
+    /* Animated background blobs */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
+      z-index: 0;
+      pointer-events: none;
+      will-change: transform;
+    }
+    .blob-1 {
+      width: 500px; height: 500px;
+      background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+      top: 10%; left: -5%;
+      animation: drift-1 20s ease-in-out infinite alternate;
+    }
+    .blob-2 {
+      width: 400px; height: 400px;
+      background: linear-gradient(135deg, #818cf8 0%, #3b82f6 100%);
+      top: 50%; right: -8%;
+      animation: drift-2 24s ease-in-out infinite alternate;
+    }
+    .blob-3 {
+      width: 350px; height: 350px;
+      background: linear-gradient(135deg, #2563eb 0%, #a5b4fc 100%);
+      bottom: 5%; left: 30%;
+      animation: drift-3 18s ease-in-out infinite alternate;
+    }
+    @keyframes drift-1 {
+      0%   { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(200px, 150px) scale(1.15); }
+      66%  { transform: translate(-100px, 250px) scale(0.9); }
+      100% { transform: translate(150px, -80px) scale(1.05); }
+    }
+    @keyframes drift-2 {
+      0%   { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(-180px, -120px) scale(1.2); }
+      66%  { transform: translate(120px, -200px) scale(0.85); }
+      100% { transform: translate(-60px, 160px) scale(1.1); }
+    }
+    @keyframes drift-3 {
+      0%   { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(160px, -100px) scale(1.1); }
+      66%  { transform: translate(-200px, 80px) scale(1.2); }
+      100% { transform: translate(100px, -180px) scale(0.9); }
+    }
+
+    /* Hide blobs on dark sections so they don't bleed oddly */
+    @media (prefers-reduced-motion: reduce) {
+      .blob { display: none; }
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-900 antialiased overflow-x-hidden">
+
+  <!-- Background blobs -->
+  <div class="blob blob-1" aria-hidden="true"></div>
+  <div class="blob blob-2" aria-hidden="true"></div>
+  <div class="blob blob-3" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-2 group">
+        <div class="bg-blue-50 text-blue-600 p-2 rounded-xl group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+          <iconify-icon icon="solar:test-tube-minimalistic-linear" width="24" height="24"></iconify-icon>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-semibold text-slate-900 tracking-tight leading-none text-lg">Dentallabor</span>
+          <span class="text-xs text-slate-500 font-medium tracking-wide uppercase">Rumpf · Nierstein</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#leistungen" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Leistungen</a>
+        <a href="#prozess" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Zusammenarbeit</a>
+        <a href="#ueber-uns" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Über uns</a>
+        <a href="#faq" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">FAQ</a>
+      </div>
+
+      <!-- CTA -->
+      <div class="hidden md:flex items-center gap-4">
+        <a href="tel:+4961331234567" class="text-sm text-slate-600 hover:text-blue-600 transition-colors flex items-center gap-1.5">
+          <iconify-icon icon="solar:phone-linear" width="16"></iconify-icon>
+          06133 / 123 456 7
+        </a>
+        <a href="#kontakt" class="bg-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-blue-700 transition-colors">
+          Anfrage stellen
+        </a>
+      </div>
+
+      <!-- Mobile toggle -->
+      <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2 text-slate-700" aria-label="Menü">
+        <iconify-icon icon="solar:hamburger-menu-linear" width="24"></iconify-icon>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-6 py-4 space-y-3">
+      <a href="#leistungen" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-sm font-medium text-slate-700 py-2">Leistungen</a>
+      <a href="#prozess" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-sm font-medium text-slate-700 py-2">Zusammenarbeit</a>
+      <a href="#ueber-uns" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-sm font-medium text-slate-700 py-2">Über uns</a>
+      <a href="#karriere" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-sm font-medium text-slate-700 py-2">Karriere</a>
+      <a href="#faq" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block text-sm font-medium text-slate-700 py-2">FAQ</a>
+      <a href="#kontakt" onclick="document.getElementById('mobile-menu').classList.add('hidden')" class="block bg-blue-600 text-white text-center py-2.5 rounded-full text-sm font-medium mt-2">Anfrage stellen</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-b from-blue-50/50 to-white/90 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-8 max-w-2xl">
+        <div class="inline-flex items-center gap-2 bg-blue-100/50 border border-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider" data-aos="fade-down">
+          <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+          Inhabergeführtes Meisterlabor
+        </div>
+        <h1 class="text-4xl md:text-6xl font-semibold text-slate-900 tracking-tight leading-[1.1]" data-aos="fade-up" data-aos-delay="100">
+          Ihr Dentallabor<br>
+          <span class="text-blue-600">in Nierstein</span>
+        </h1>
+        <p class="text-xl text-slate-500 font-medium leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+          Präzision aus Meisterhand. Hochwertiger Zahnersatz, persönliche Abstimmung und verlässliche Lieferzeiten für Zahnarztpraxen in Rheinhessen und Rhein-Main.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 pt-4" data-aos="fade-up" data-aos-delay="300">
+          <a href="tel:+4961331234567" class="flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-full text-sm font-medium hover:bg-blue-700 transition-all hover:shadow-blue-200 hover:shadow-xl active:scale-95">
+            <iconify-icon icon="solar:phone-calling-linear" width="20"></iconify-icon>
+            Jetzt anrufen
+          </a>
+          <a href="#kontakt" class="flex items-center justify-center gap-2 bg-white text-slate-700 border border-slate-200 px-8 py-4 rounded-full text-sm font-medium hover:bg-slate-50 hover:border-slate-300 transition-all active:scale-95">
+            Zusammenarbeit anfragen
+            <iconify-icon icon="solar:arrow-right-linear" width="20"></iconify-icon>
+          </a>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -inset-4 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full blur-3xl opacity-30"></div>
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 bg-white aspect-[4/3] flex flex-col items-center justify-center border border-slate-100 gap-6 p-10">
+          <!-- Decorative precision graphic -->
+          <div class="relative flex items-center justify-center">
+            <div class="absolute w-40 h-40 rounded-full border-2 border-blue-100 opacity-60"></div>
+            <div class="absolute w-28 h-28 rounded-full border border-blue-200 opacity-40"></div>
+            <div class="w-24 h-24 rounded-full bg-blue-50 flex items-center justify-center shadow-inner">
+              <span class="text-3xl font-semibold text-blue-600 tracking-tight">FR</span>
+            </div>
+          </div>
+          <div class="text-center space-y-1">
+            <p class="font-semibold text-slate-800 text-lg">Florian Rumpf</p>
+            <p class="text-sm text-slate-500">Zahntechnikermeister · Nierstein</p>
+          </div>
+          <div class="flex gap-3 flex-wrap justify-center">
+            <span class="px-3 py-1.5 bg-blue-50 text-blue-700 text-xs font-medium rounded-full border border-blue-100">Meisterbetrieb</span>
+            <span class="px-3 py-1.5 bg-slate-50 text-slate-600 text-xs font-medium rounded-full border border-slate-100">CAD/CAM</span>
+            <span class="px-3 py-1.5 bg-slate-50 text-slate-600 text-xs font-medium rounded-full border border-slate-100">Made in Germany</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST CARDS (floating) -->
+  <section class="mt-[-60px] relative z-10 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-4" data-aos="fade-up">
+        <a href="#leistungen" class="bg-white p-6 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
+            <iconify-icon icon="solar:diploma-linear" width="24"></iconify-icon>
+          </div>
+          <span class="text-sm font-semibold text-slate-700">Meisterlabor</span>
+        </a>
+        <a href="#ueber-uns" class="bg-white p-6 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+            <iconify-icon icon="solar:map-point-linear" width="24"></iconify-icon>
+          </div>
+          <span class="text-sm font-semibold text-slate-700">Made in Germany</span>
+        </a>
+        <a href="#ueber-uns" class="bg-white p-6 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-violet-50 text-violet-600 flex items-center justify-center group-hover:bg-violet-600 group-hover:text-white transition-colors">
+            <iconify-icon icon="solar:user-speak-rounded-linear" width="24"></iconify-icon>
+          </div>
+          <span class="text-sm font-semibold text-slate-700">Persönlich</span>
+        </a>
+        <a href="#leistungen" class="bg-white p-6 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center gap-3">
+          <div class="w-12 h-12 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center group-hover:bg-amber-600 group-hover:text-white transition-colors">
+            <iconify-icon icon="solar:cpu-linear" width="24"></iconify-icon>
+          </div>
+          <span class="text-sm font-semibold text-slate-700">Digital & Analog</span>
+        </a>
+        <a href="#prozess" class="bg-white p-6 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center gap-3 col-span-2 md:col-span-1">
+          <div class="w-12 h-12 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center group-hover:bg-rose-500 group-hover:text-white transition-colors">
+            <iconify-icon icon="solar:buildings-2-linear" width="24"></iconify-icon>
+          </div>
+          <span class="text-sm font-semibold text-slate-700">Regional</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM SOLUTION -->
+  <section class="py-24 bg-white/90">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4" data-aos="fade-up">
+        <span class="text-sm font-semibold text-blue-600 uppercase tracking-wider">Ihr Anspruch, unser Standard</span>
+        <h2 class="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight">Was Sie von Ihrem Dentallabor erwarten dürfen</h2>
+        <p class="text-slate-500">Wir verstehen, was Sie von einem Labor erwarten — und woran es bei vielen scheitert.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="group bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-blue-200 hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+          <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+            <iconify-icon icon="solar:verified-check-linear" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-3">Passgenaue Qualität</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">Zahnersatz, der beim ersten Einsetzen passt — ohne Nacharbeit, ohne Zeitverlust für Ihre Praxis.</p>
+        </div>
+        <div class="group bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-blue-200 hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+            <iconify-icon icon="solar:phone-linear" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-3">Direkte Erreichbarkeit</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">Ein Ansprechpartner, der Ihr Telefon abnimmt — persönlich, direkt, ohne Warteschleife.</p>
+        </div>
+        <div class="group bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-blue-200 hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+          <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+            <iconify-icon icon="solar:calendar-linear" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-3">Verbindliche Termine</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">Liefertermine, die stehen — damit Sie Ihren Patienten verbindliche Zusagen machen können.</p>
+        </div>
+        <div class="group bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-blue-200 hover:-translate-y-1 hover:shadow-xl transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+            <iconify-icon icon="solar:hand-shake-linear" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-3">Flexible Zusammenarbeit</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">Abstimmung auf Augenhöhe — ob Abdrücke oder Scandaten, wir arbeiten so, wie es für Ihre Praxis passt.</p>
+        </div>
+      </div>
+      <div class="text-center mt-12" data-aos="fade-up">
+        <a href="#ueber-uns" class="inline-flex items-center gap-2 bg-white text-slate-700 border border-slate-200 px-8 py-3.5 rounded-full text-sm font-medium hover:bg-slate-50 hover:border-slate-300 transition-all active:scale-95">
+          Lernen Sie unser Labor kennen
+          <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÜBER UNS -->
+  <section class="bg-slate-50/80 pt-32 pb-24" id="ueber-uns">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <!-- Image column -->
+        <div class="order-2 md:order-1 relative" data-aos="fade-right">
+          <div class="absolute -top-4 -left-4 w-24 h-24 bg-blue-100 rounded-full blur-2xl"></div>
+          <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-indigo-100 rounded-full blur-2xl"></div>
+          <div class="relative rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-white shadow-xl w-full aspect-[4/5] flex flex-col items-center justify-center gap-6 p-8">
+            <div class="relative">
+              <div class="w-40 h-40 rounded-full bg-white shadow-lg flex items-center justify-center">
+                <span class="text-5xl font-semibold text-blue-600 tracking-tight">FR</span>
+              </div>
+              <div class="absolute -bottom-2 -right-2 bg-blue-600 text-white rounded-full p-2">
+                <iconify-icon icon="solar:diploma-linear" width="20"></iconify-icon>
+              </div>
+            </div>
+            <div class="text-center">
+              <p class="font-semibold text-slate-800 text-xl">Florian Rumpf</p>
+              <p class="text-sm text-slate-500 mt-1">Zahntechnikermeister</p>
+              <p class="text-xs text-slate-400 mt-0.5">Nierstein, Rheinhessen</p>
+            </div>
+          </div>
+          <!-- Floating card -->
+          <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg max-w-xs border border-slate-100 hidden md:block">
+            <div class="flex items-center gap-3 mb-2">
+              <iconify-icon icon="solar:medal-star-linear" class="text-yellow-500 text-2xl" width="24"></iconify-icon>
+              <span class="font-semibold text-slate-900">Meisterbetrieb</span>
+            </div>
+            <p class="text-xs text-slate-500">Inhabergeführtes Labor mit höchsten Qualitätsstandards.</p>
+          </div>
+        </div>
+
+        <!-- Text column -->
+        <div class="order-1 md:order-2 space-y-6" data-aos="fade-left">
+          <div class="flex items-center gap-2">
+            <span class="h-px w-8 bg-blue-600"></span>
+            <span class="text-sm font-semibold text-blue-600 uppercase tracking-wider">Der Meister dahinter</span>
+          </div>
+          <h2 class="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight">Zahntechnik ist für mich nicht nur Beruf — sondern Anspruch.</h2>
+          <div class="space-y-4 text-slate-600 leading-relaxed">
+            <p>Mein Name ist Florian Rumpf, ich bin Zahntechnikermeister und führe mein Labor in Nierstein mit einem klaren Grundsatz: Jede Arbeit, die unser Labor verlässt, muss so gut sein, dass ich sie selbst tragen würde.</p>
+            <p>Ich habe Dentallabor Rumpf gegründet, weil ich überzeugt bin, dass Zahntechnik von persönlicher Abstimmung lebt — nicht von anonymen Prozessen. In meinem Labor verbinde ich handwerkliche Präzision mit moderner digitaler Technik.</p>
+            <p class="font-medium text-slate-800">Wenn Sie einen Partner suchen, der mitdenkt, erreichbar ist und Qualität als Arbeitsstandard lebt — dann lassen Sie uns sprechen.</p>
+          </div>
+          <div class="pt-4">
+            <a href="#kontakt" class="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center gap-2 transition-colors">
+              Zusammenarbeit anfragen
+              <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDO (blue full-width) -->
+  <section class="py-20 bg-blue-600 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-5" style="background-image:url('https://www.transparenttextures.com/patterns/cubes.png')"></div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10 space-y-8">
+      <iconify-icon icon="solar:star-rings-linear" class="text-5xl opacity-80" width="48" data-aos="zoom-in"></iconify-icon>
+      <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">Unser Anspruch</h2>
+      <p class="text-xl md:text-2xl font-medium leading-relaxed opacity-90">
+        „Jede Arbeit, die unser Labor verlässt, muss so gut sein, dass ich sie selbst tragen würde."
+      </p>
+      <div class="w-16 h-1 bg-white/30 mx-auto rounded-full"></div>
+      <p class="text-blue-100 leading-relaxed max-w-2xl mx-auto">
+        Dentallabor Rumpf ist ein inhabergeführtes Meisterlabor in Nierstein — ausgestattet mit moderner CAD/CAM-Technologie und jahrelanger handwerklicher Erfahrung. Von der Einzelkrone bis zur komplexen Implantatversorgung fertigen wir alles mit höchster Präzision.
+      </p>
+    </div>
+  </section>
+
+  <!-- LEISTUNGEN -->
+  <section id="leistungen" class="py-24 bg-white/90">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4" data-aos="fade-up">
+        <span class="text-sm font-semibold text-blue-600 uppercase tracking-wider">Was wir fertigen</span>
+        <h2 class="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight">Unsere Leistungen</h2>
+        <p class="text-slate-500">Von der Einzelkrone bis zur komplexen Implantatversorgung — alles aus einer Hand, gefertigt in Nierstein.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Kronen & Brücken -->
+        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-blue-200 transition-colors" data-aos="fade-up" data-aos-delay="0">
+          <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6">
+            <iconify-icon icon="solar:crown-minimalistic-linear" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-4">Kronen & Brücken</h3>
+          <p class="text-sm text-slate-500 mb-6">Hochpräzise Kronen und Brücken aus Zirkon, Vollkeramik oder Metallkeramik. Jede Arbeit individuell an die Patientensituation angepasst.</p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-blue-500 shrink-0"></iconify-icon> Zirkonkrone
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-blue-500 shrink-0"></iconify-icon> Vollkeramik
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-blue-500 shrink-0"></iconify-icon> Metallkeramik
+            </li>
+          </ul>
+        </div>
+
+        <!-- Implantatprothetik -->
+        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-rose-200 transition-colors" data-aos="fade-up" data-aos-delay="80">
+          <div class="w-12 h-12 bg-rose-100 text-rose-500 rounded-xl flex items-center justify-center mb-6">
+            <iconify-icon icon="solar:heart-pulse-linear" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-4">Implantatprothetik</h3>
+          <p class="text-sm text-slate-500 mb-6">Individuelle Suprakonstruktionen auf allen gängigen Implantatsystemen. Präzise Passung durch digitale und analoge Fertigungsverfahren.</p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-rose-500 shrink-0"></iconify-icon> Schraubenretainiert
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-rose-500 shrink-0"></iconify-icon> Zementiert
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-rose-500 shrink-0"></iconify-icon> Stegkonstruktionen
+            </li>
+          </ul>
+        </div>
+
+        <!-- Veneers & Ästhetik -->
+        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-emerald-200 transition-colors" data-aos="fade-up" data-aos-delay="160">
+          <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
+            <iconify-icon icon="solar:magic-stick-3-linear" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-4">Veneers & Ästhetik</h3>
+          <p class="text-sm text-slate-500 mb-6">Hauchdünne Keramikschalen für natürlich schöne Frontzahnästhetik. Farbabstimmung und Schichtung in Meisterqualität.</p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-emerald-500 shrink-0"></iconify-icon> Veneers
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-emerald-500 shrink-0"></iconify-icon> Vollkeramik-Frontzähne
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-emerald-500 shrink-0"></iconify-icon> Individuelle Farbabstimmung
+            </li>
+          </ul>
+        </div>
+
+        <!-- Teil- & Vollprothesen -->
+        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-violet-200 transition-colors" data-aos="fade-up" data-aos-delay="0">
+          <div class="w-12 h-12 bg-violet-100 text-violet-600 rounded-xl flex items-center justify-center mb-6">
+            <iconify-icon icon="solar:emoji-funny-circle-linear" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-4">Teil- & Vollprothesen</h3>
+          <p class="text-sm text-slate-500 mb-6">Funktionaler und ästhetischer herausnehmbarer Zahnersatz. Sorgfältige Anpassung für optimalen Tragekomfort.</p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-violet-500 shrink-0"></iconify-icon> Modellgussprothese
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-violet-500 shrink-0"></iconify-icon> Totalprothese
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-violet-500 shrink-0"></iconify-icon> Teleskoparbeiten
+            </li>
+          </ul>
+        </div>
+
+        <!-- Schienen & Retainer -->
+        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-amber-200 transition-colors" data-aos="fade-up" data-aos-delay="80">
+          <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mb-6">
+            <iconify-icon icon="solar:shield-check-linear" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-4">Schienen & Retainer</h3>
+          <p class="text-sm text-slate-500 mb-6">Aufbissschienen, CMD-Schienen und kieferorthopädische Retainer. Präzise gefertigt nach digitaler oder analoger Abformung.</p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-amber-500 shrink-0"></iconify-icon> Aufbissschiene
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-amber-500 shrink-0"></iconify-icon> CMD-Schiene
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-amber-500 shrink-0"></iconify-icon> KFO-Retainer
+            </li>
+          </ul>
+        </div>
+
+        <!-- CAD/CAM & Digital -->
+        <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:border-indigo-200 transition-colors" data-aos="fade-up" data-aos-delay="160">
+          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mb-6">
+            <iconify-icon icon="solar:cpu-linear" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-semibold text-slate-900 mb-4">CAD/CAM & Digital</h3>
+          <p class="text-sm text-slate-500 mb-6">Verarbeitung von Intraoralscan-Daten, digitales Design, maschinelle Präzisionsfertigung. Schnell, exakt, reproduzierbar.</p>
+          <ul class="space-y-3">
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-indigo-500 shrink-0"></iconify-icon> Intraoralscan-Verarbeitung
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-indigo-500 shrink-0"></iconify-icon> Digitales Design (CAD)
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-700">
+              <iconify-icon icon="solar:check-circle-linear" class="text-indigo-500 shrink-0"></iconify-icon> CNC-Präzisionsfräsung
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Service Tags -->
+      <div class="mt-12 flex flex-wrap justify-center gap-3">
+        <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-600">Zirkonoxid</span>
+        <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-600">Presskeramik</span>
+        <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-600">Digitale Abformung</span>
+        <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-600">Schnelle Lieferzeiten</span>
+        <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-600">Alle Implantatsysteme</span>
+      </div>
+      <div class="text-center mt-12">
+        <a href="#kontakt" class="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-3.5 rounded-full text-sm font-medium hover:bg-blue-700 transition-all hover:shadow-blue-200 hover:shadow-lg active:scale-95">
+          Leistungen besprechen
+          <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROZESS + FAQ (dark section) -->
+  <section class="py-24 bg-slate-900 text-slate-300" id="prozess">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
+      <!-- Process steps -->
+      <div class="space-y-8" data-aos="fade-right">
+        <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight">So läuft die Zusammenarbeit</h2>
+        <div class="space-y-6 leading-relaxed">
+          <div class="flex gap-5 items-start">
+            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">01</div>
+            <div>
+              <h3 class="text-white font-semibold mb-1">Kontakt & Abstimmung</h3>
+              <p>Sie melden sich telefonisch, per E-Mail oder über das Formular. Wir besprechen Ihren Fall und klären alle Details.</p>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">02</div>
+            <div>
+              <h3 class="text-white font-semibold mb-1">Auftragseingang</h3>
+              <p>Senden Sie Abdrücke oder laden Sie Scandaten hoch. Abholung im Umkreis Rheinhessen auf Wunsch inklusive.</p>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">03</div>
+            <div>
+              <h3 class="text-white font-semibold mb-1">Fertigung in Nierstein</h3>
+              <p>Präzise Herstellung in unserem Labor. Jede Arbeit durchläuft unsere mehrstufige Qualitätskontrolle.</p>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">04</div>
+            <div>
+              <h3 class="text-white font-semibold mb-1">Lieferung & Betreuung</h3>
+              <p>Pünktliche Lieferung, persönliches Feedback bei Bedarf, schnelle Nachbesserung wenn nötig.</p>
+            </div>
+          </div>
+        </div>
+        <a href="#kontakt" class="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-3.5 rounded-full text-sm font-medium hover:bg-blue-500 transition-all">
+          <iconify-icon icon="solar:phone-calling-linear" width="20"></iconify-icon>
+          Ersten Auftrag besprechen
+        </a>
+      </div>
+
+      <!-- FAQ -->
+      <div class="relative">
+        <div class="absolute inset-0 bg-blue-500/20 blur-3xl rounded-full"></div>
+        <div class="relative bg-slate-800 p-8 rounded-3xl border border-slate-700" id="faq" data-aos="fade-left">
+          <h3 class="text-white font-semibold text-xl mb-6 flex items-center gap-2">
+            <iconify-icon icon="solar:question-circle-linear" class="text-blue-400"></iconify-icon>
+            Häufige Fragen
+          </h3>
+          <div class="space-y-4">
+            <details class="group bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700/50 open:bg-slate-700 transition-all">
+              <summary class="flex justify-between items-center p-4 cursor-pointer font-medium text-white hover:text-blue-400 transition-colors">
+                Welche Lieferzeiten kann ich erwarten?
+                <iconify-icon icon="solar:alt-arrow-down-linear" class="group-open:rotate-180 transition-transform"></iconify-icon>
+              </summary>
+              <div class="p-4 pt-0 text-sm text-slate-400">
+                Standardarbeiten wie Kronen und Brücken liefern wir in der Regel innerhalb von 5–7 Werktagen. Bei Expressaufträgen sprechen Sie uns bitte direkt an — wir finden gemeinsam eine Lösung.
+              </div>
+            </details>
+            <details class="group bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700/50 open:bg-slate-700 transition-all">
+              <summary class="flex justify-between items-center p-4 cursor-pointer font-medium text-white hover:text-blue-400 transition-colors">
+                Wie übermittle ich Scandaten oder Abdrücke?
+                <iconify-icon icon="solar:alt-arrow-down-linear" class="group-open:rotate-180 transition-transform"></iconify-icon>
+              </summary>
+              <div class="p-4 pt-0 text-sm text-slate-400">
+                Scandaten nehmen wir per gängiger Software-Schnittstelle oder Dateiübertragung entgegen. Klassische Abdrücke können Sie einsenden oder — bei Praxen im Umkreis Rheinhessen — durch unseren Abholservice übergeben.
+              </div>
+            </details>
+            <details class="group bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700/50 open:bg-slate-700 transition-all">
+              <summary class="flex justify-between items-center p-4 cursor-pointer font-medium text-white hover:text-blue-400 transition-colors">
+                Arbeiten Sie auch mit kleinen Praxen zusammen?
+                <iconify-icon icon="solar:alt-arrow-down-linear" class="group-open:rotate-180 transition-transform"></iconify-icon>
+              </summary>
+              <div class="p-4 pt-0 text-sm text-slate-400">
+                Selbstverständlich. Als inhabergeführtes Labor legen wir gerade auf persönliche Partnerschaften besonderen Wert — unabhängig von der Auftragsmenge. Sprechen Sie uns einfach an.
+              </div>
+            </details>
+            <details class="group bg-slate-800/50 rounded-xl overflow-hidden border border-slate-700/50 open:bg-slate-700 transition-all">
+              <summary class="flex justify-between items-center p-4 cursor-pointer font-medium text-white hover:text-blue-400 transition-colors">
+                Wie läuft eine Nachbesserung ab?
+                <iconify-icon icon="solar:alt-arrow-down-linear" class="group-open:rotate-180 transition-transform"></iconify-icon>
+              </summary>
+              <div class="p-4 pt-0 text-sm text-slate-400">
+                Bei Passungenauigkeiten oder Korrekturbedarf melden Sie sich direkt bei uns. Nachbesserungen behandeln wir mit höchster Priorität und schnellstmöglicher Rücklieferung.
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KARRIERE -->
+  <section id="karriere" class="py-24 bg-slate-800 text-slate-300">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/20 text-blue-300 text-sm font-medium mb-6 border border-blue-500/30">
+          Karriere bei Dentallabor Rumpf
+        </div>
+        <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">Du suchst ein Labor, das Zahntechnik noch ernst meint?</h2>
+        <p class="text-slate-400 leading-relaxed">Wir suchen Menschen, die Präzision lieben, Teamarbeit schätzen und sich weiterentwickeln wollen.</p>
+      </div>
+      <p class="text-center text-slate-400 max-w-2xl mx-auto mb-16 leading-relaxed" data-aos="fade-up">
+        Bei Dentallabor Rumpf in Nierstein arbeitest du in einem inhabergeführten Meisterlabor — nicht in einer anonymen Fertigungsstraße. Hier hat jede Arbeit einen Namen, jedes Teammitglied eine Stimme, und Qualität ist kein Poster an der Wand, sondern täglicher Anspruch.
+      </p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div class="group bg-white/5 rounded-2xl p-6 border border-white/10 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+          <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-4 group-hover:bg-blue-500/30 transition-colors">
+            <iconify-icon icon="solar:monitor-linear" width="24" class="text-white"></iconify-icon>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-1">Moderne Ausstattung</h3>
+          <p class="text-slate-400 text-sm">CAD/CAM, Scanner, aktuelle Software</p>
+        </div>
+        <div class="group bg-white/5 rounded-2xl p-6 border border-white/10 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300" data-aos="fade-up" data-aos-delay="80">
+          <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-4 group-hover:bg-blue-500/30 transition-colors">
+            <iconify-icon icon="solar:diploma-linear" width="24" class="text-white"></iconify-icon>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-1">Fortbildung & Entwicklung</h3>
+          <p class="text-slate-400 text-sm">Wir investieren in dein Können</p>
+        </div>
+        <div class="group bg-white/5 rounded-2xl p-6 border border-white/10 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300" data-aos="fade-up" data-aos-delay="160">
+          <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-4 group-hover:bg-blue-500/30 transition-colors">
+            <iconify-icon icon="solar:users-group-rounded-linear" width="24" class="text-white"></iconify-icon>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-1">Kleines Team</h3>
+          <p class="text-slate-400 text-sm">Echtes Miteinander, keine Anonymität</p>
+        </div>
+        <div class="group bg-white/5 rounded-2xl p-6 border border-white/10 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+          <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-4 group-hover:bg-blue-500/30 transition-colors">
+            <iconify-icon icon="solar:wallet-linear" width="24" class="text-white"></iconify-icon>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-1">Faire Vergütung</h3>
+          <p class="text-slate-400 text-sm">Transparent und leistungsgerecht</p>
+        </div>
+        <div class="group bg-white/5 rounded-2xl p-6 border border-white/10 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300" data-aos="fade-up" data-aos-delay="80">
+          <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-4 group-hover:bg-blue-500/30 transition-colors">
+            <iconify-icon icon="solar:map-point-linear" width="24" class="text-white"></iconify-icon>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-1">Gute Erreichbarkeit</h3>
+          <p class="text-slate-400 text-sm">Nierstein, Parkplätze vorhanden</p>
+        </div>
+        <div class="group bg-white/5 rounded-2xl p-6 border border-white/10 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300" data-aos="fade-up" data-aos-delay="160">
+          <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-4 group-hover:bg-blue-500/30 transition-colors">
+            <iconify-icon icon="solar:clock-linear" width="24" class="text-white"></iconify-icon>
+          </div>
+          <h3 class="text-lg font-semibold text-white mb-1">Flexible Arbeitszeiten</h3>
+          <p class="text-slate-400 text-sm">Nach Absprache möglich</p>
+        </div>
+      </div>
+      <!-- Offene Stellen -->
+      <div class="max-w-2xl mx-auto" data-aos="fade-up">
+        <h3 class="text-xl font-semibold text-white text-center mb-8">Offene Stellen</h3>
+        <div class="space-y-4 mb-10">
+          <div class="group bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-blue-400/30 transition-all">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-blue-500/30 transition-colors">
+                <iconify-icon icon="solar:case-minimalistic-linear" width="20" class="text-white"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">Zahntechniker:in (m/w/d)</h4>
+                <p class="text-sm text-slate-400 mb-1">Vollzeit oder Teilzeit</p>
+                <p class="text-sm text-slate-400">Erfahrene Fachkraft für unser Laborteam</p>
+              </div>
+            </div>
+          </div>
+          <div class="group bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-blue-400/30 transition-all">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-blue-500/30 transition-colors">
+                <iconify-icon icon="solar:square-academic-cap-linear" width="20" class="text-white"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="font-semibold text-white">Auszubildende:r Zahntechnik (m/w/d)</h4>
+                <p class="text-sm text-slate-400 mb-1">Ausbildung</p>
+                <p class="text-sm text-slate-400">Starte deine Karriere in der Zahntechnik</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <a href="#kontakt" class="inline-flex items-center justify-center gap-2 bg-white text-slate-900 px-8 py-3.5 rounded-full text-sm font-medium hover:bg-slate-100 transition-all shadow-lg active:scale-95">
+            Jetzt unkompliziert bewerben — kein Anschreiben nötig
+            <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STANDORT & ÖFFNUNGSZEITEN -->
+  <section class="py-24 bg-white/90">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-4" data-aos="fade-up">
+        <span class="text-sm font-semibold text-blue-600 uppercase tracking-wider">Wo Sie uns finden</span>
+        <h2 class="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight">Ihr Dentallabor in Nierstein</h2>
+        <p class="text-slate-500">Wir fertigen hochwertigen Zahnersatz für Zahnarztpraxen in Nierstein, Mainz, Wiesbaden, Oppenheim, Alzey und dem gesamten Rhein-Main-Gebiet.</p>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-8">
+        <!-- Map -->
+        <div class="rounded-2xl overflow-hidden border border-slate-100 shadow-lg aspect-[4/3]" data-aos="fade-right">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10182.02!2d8.3365!3d49.8716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd95a3e3c5b8cd%3A0x422d4d510daaf30!2s55283%20Nierstein!5e0!3m2!1sde!2sde!4v1700000000000"
+            width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="Standort Dentallabor Rumpf Nierstein"></iframe>
+        </div>
+        <!-- Info + Hours -->
+        <div class="space-y-8" data-aos="fade-left">
+          <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <div class="flex items-center gap-3 mb-6 text-blue-600">
+              <iconify-icon icon="solar:clock-circle-linear" width="24"></iconify-icon>
+              <h3 class="font-semibold text-slate-900">Öffnungszeiten</h3>
+            </div>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center py-2 border-b border-slate-50">
+                <span class="text-sm font-medium text-slate-700">Montag</span>
+                <span class="text-sm text-slate-500">8:00 – 17:00 Uhr</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-slate-50">
+                <span class="text-sm font-medium text-slate-700">Dienstag</span>
+                <span class="text-sm text-slate-500">8:00 – 17:00 Uhr</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-slate-50">
+                <span class="text-sm font-medium text-slate-700">Mittwoch</span>
+                <span class="text-sm text-slate-500">8:00 – 17:00 Uhr</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-slate-50">
+                <span class="text-sm font-medium text-slate-700">Donnerstag</span>
+                <span class="text-sm text-slate-500">8:00 – 17:00 Uhr</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-slate-50">
+                <span class="text-sm font-medium text-slate-700">Freitag</span>
+                <span class="text-sm text-slate-500">8:00 – 17:00 Uhr</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-slate-50">
+                <span class="text-sm font-medium text-slate-700">Samstag</span>
+                <span class="text-sm text-rose-500 font-medium">Geschlossen</span>
+              </div>
+              <div class="flex justify-between items-center py-2">
+                <span class="text-sm font-medium text-slate-700">Sonntag</span>
+                <span class="text-sm text-rose-500 font-medium">Geschlossen</span>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                <iconify-icon icon="solar:map-point-linear" width="20"></iconify-icon>
+              </div>
+              <div>
+                <p class="font-medium text-slate-800 text-sm">Adresse</p>
+                <p class="text-slate-500 text-sm">Musterstraße 1, 55283 Nierstein</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                <iconify-icon icon="solar:phone-linear" width="20"></iconify-icon>
+              </div>
+              <div>
+                <p class="font-medium text-slate-800 text-sm">Telefon</p>
+                <a href="tel:+4961331234567" class="text-slate-500 text-sm hover:text-blue-600 transition-colors">06133 / 123 456 7</a>
+              </div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 pt-2 border-t border-slate-100">
+            <span class="font-medium text-slate-500">Wir betreuen Praxen in:</span> Nierstein, Mainz, Wiesbaden, Oppenheim, Alzey, Ingelheim, Bingen, Bad Kreuznach und dem gesamten Rhein-Main-Gebiet.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="py-24 bg-blue-50/60">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-sm font-semibold text-blue-600 uppercase tracking-wider">Kontakt aufnehmen</span>
+        <h2 class="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight mt-2">Lassen Sie uns sprechen.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Info card -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 space-y-8 md:col-span-1">
+          <div>
+            <div class="flex items-center gap-3 mb-2 text-blue-600">
+              <iconify-icon icon="solar:map-point-linear" width="24"></iconify-icon>
+              <h3 class="font-semibold text-slate-900">Adresse</h3>
+            </div>
+            <address class="not-italic text-slate-600 text-sm leading-relaxed pl-9">
+              Dentallabor Rumpf<br>
+              Musterstraße 1<br>
+              55283 Nierstein
+            </address>
+          </div>
+          <div>
+            <div class="flex items-center gap-3 mb-2 text-blue-600">
+              <iconify-icon icon="solar:phone-calling-linear" width="24"></iconify-icon>
+              <h3 class="font-semibold text-slate-900">Telefon & E-Mail</h3>
+            </div>
+            <div class="flex flex-col gap-1 pl-9">
+              <a href="tel:+4961331234567" class="text-slate-600 hover:text-blue-600 text-sm">06133 / 123 456 7</a>
+              <a href="mailto:info@dentallabor-rumpf.de" class="text-slate-600 hover:text-blue-600 text-sm">info@dentallabor-rumpf.de</a>
+            </div>
+          </div>
+          <div class="pt-4">
+            <a href="tel:+4961331234567" class="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-3 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+              Jetzt anrufen
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact form -->
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 md:col-span-2">
+          <div class="flex items-center gap-3 mb-6 text-blue-600">
+            <iconify-icon icon="solar:letter-linear" width="24"></iconify-icon>
+            <h3 class="font-semibold text-slate-900">Anfrage senden</h3>
+          </div>
+          <form class="space-y-5" action="#" method="POST">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label for="name" class="text-sm font-medium text-slate-700">Ihr Name</label>
+                <input id="name" name="name" type="text" placeholder="Dr. Max Mustermann" required
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition-colors">
+              </div>
+              <div class="space-y-1.5">
+                <label for="praxis" class="text-sm font-medium text-slate-700">Praxisname</label>
+                <input id="praxis" name="praxis" type="text" placeholder="Zahnarztpraxis Mustermann"
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition-colors">
+              </div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label for="telefon" class="text-sm font-medium text-slate-700">Telefon</label>
+                <input id="telefon" name="telefon" type="tel" placeholder="06131 / 123 456"
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition-colors">
+              </div>
+              <div class="space-y-1.5">
+                <label for="email" class="text-sm font-medium text-slate-700">E-Mail</label>
+                <input id="email" name="email" type="email" placeholder="praxis@beispiel.de" required
+                  class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition-colors">
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <label for="nachricht" class="text-sm font-medium text-slate-700">Ihre Nachricht</label>
+              <textarea id="nachricht" name="nachricht" rows="4" placeholder="Beschreiben Sie kurz Ihr Anliegen oder Ihre Anfrage..." required
+                class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition-colors resize-none"></textarea>
+            </div>
+            <button type="submit" class="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-3.5 rounded-full text-sm font-medium hover:bg-blue-700 transition-all hover:shadow-blue-200 hover:shadow-lg active:scale-95">
+              Anfrage senden
+              <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-100 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div class="col-span-1 md:col-span-1 space-y-4">
+          <div class="flex items-center gap-2 text-blue-600">
+            <iconify-icon icon="solar:test-tube-minimalistic-linear" width="24"></iconify-icon>
+            <span class="font-semibold text-slate-900 tracking-tight">Dentallabor Rumpf</span>
+          </div>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Inhabergeführtes Meisterlabor in Nierstein — hochwertiger Zahnersatz für Zahnarztpraxen in Rheinhessen und Rhein-Main.
+          </p>
+        </div>
+        <div class="space-y-4">
+          <h4 class="font-semibold text-slate-900 text-sm">Navigation</h4>
+          <ul class="space-y-2 text-sm text-slate-500">
+            <li><a href="#home" class="hover:text-blue-600 transition-colors">Start</a></li>
+            <li><a href="#ueber-uns" class="hover:text-blue-600 transition-colors">Über uns</a></li>
+            <li><a href="#leistungen" class="hover:text-blue-600 transition-colors">Leistungen</a></li>
+            <li><a href="#prozess" class="hover:text-blue-600 transition-colors">Zusammenarbeit</a></li>
+            <li><a href="#kontakt" class="hover:text-blue-600 transition-colors">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="space-y-4">
+          <h4 class="font-semibold text-slate-900 text-sm">Kontakt</h4>
+          <ul class="space-y-2 text-sm text-slate-500">
+            <li>Musterstraße 1</li>
+            <li>55283 Nierstein</li>
+            <li><a href="tel:+4961331234567" class="hover:text-blue-600 transition-colors">06133 / 123 456 7</a></li>
+            <li><a href="mailto:info@dentallabor-rumpf.de" class="hover:text-blue-600 transition-colors">info@dentallabor-rumpf.de</a></li>
+          </ul>
+        </div>
+        <div class="space-y-4">
+          <h4 class="font-semibold text-slate-900 text-sm">Rechtliches</h4>
+          <ul class="space-y-2 text-sm text-slate-500">
+            <li><a href="/impressum" class="hover:text-blue-600 transition-colors">Impressum</a></li>
+            <li><a href="/datenschutz" class="hover:text-blue-600 transition-colors">Datenschutz</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-100 pt-8 text-center">
+        <p class="text-xs text-slate-400">© 2025 Dentallabor Rumpf, Florian Rumpf. Alle Rechte vorbehalten.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 600, easing: 'ease-out-cubic', once: true, offset: 80 });
+
+    /* ClickSpark — vanilla JS port */
+    (function() {
+      var COLOR = '#3b82f6', SIZE = 14, RADIUS = 20, COUNT = 8, DUR = 400;
+      document.addEventListener('click', function(e) {
+        for (var i = 0; i < COUNT; i++) {
+          var a = (2 * Math.PI / COUNT) * i;
+          var tx = Math.cos(a) * RADIUS, ty = Math.sin(a) * RADIUS;
+          var s = document.createElement('div');
+          s.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;border-radius:50%;' +
+            'width:'+SIZE+'px;height:'+SIZE+'px;background:'+COLOR+';' +
+            'left:'+(e.clientX-SIZE/2)+'px;top:'+(e.clientY-SIZE/2)+'px;' +
+            'opacity:1;transform:translate(0,0) scale(1);' +
+            'transition:transform '+DUR+'ms cubic-bezier(.22,1,.36,1),opacity '+DUR+'ms ease-out;';
+          document.body.appendChild(s);
+          s.offsetWidth; // force reflow
+          s.style.transform = 'translate('+tx+'px,'+ty+'px) scale(0)';
+          s.style.opacity = '0';
+          setTimeout(function(el){el.remove();}, DUR, s);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

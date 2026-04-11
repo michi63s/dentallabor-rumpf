@@ -120,6 +120,40 @@
       }
     }
 
+
+    /* Mobile-safe overflow fixes */
+    html, body {
+      overflow-x: clip;
+      max-width: 100%;
+    }
+
+    body {
+      position: relative;
+    }
+
+    section,
+    nav,
+    footer {
+      overflow-x: clip;
+    }
+
+    .teeth-float {
+      max-width: 88px;
+    }
+
+    @media (max-width: 768px) {
+      .teeth-float {
+        width: 58px !important;
+      }
+
+      .blob-1,
+      .blob-2,
+      .blob-3 {
+        filter: blur(60px);
+        opacity: 0.14;
+      }
+    }
+
   </style>
 </head>
 <body class="bg-white text-slate-900 antialiased overflow-x-hidden">
@@ -975,10 +1009,10 @@
       const img = el ? el.querySelector('img') : null;
       if (!el || !img) return;
 
-      let x = 40;
-      let y = 40;
-      let vx = 0.72;
-      let vy = 0.52;
+      let x = 24;
+      let y = 24;
+      let vx = window.innerWidth < 768 ? 0.58 : 0.72;
+      let vy = window.innerWidth < 768 ? 0.42 : 0.52;
       let direction = 1;
       let targetOpacity = window.innerWidth < 768 ? 0.34 : 0.55;
       let currentOpacity = 0;

@@ -132,6 +132,11 @@
       100% { transform: translate(calc(100px + var(--scroll-shift-x)), calc(-180px + var(--scroll-shift-y))) scale(0.9); }
     }
 
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-10px); }
+    }
+
     /* Hide blobs on dark sections so they don't bleed oddly */
     @media (prefers-reduced-motion: reduce) {
       .blob { display: none; }
@@ -442,7 +447,7 @@
             </div>
           </div>
           <!-- Floating card -->
-          <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg max-w-xs border border-slate-100 hidden md:block">
+          <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg max-w-xs border border-slate-100 hidden md:block" style="animation: float 4s ease-in-out infinite;">
             <div class="flex items-center gap-3 mb-2">
               <iconify-icon icon="solar:medal-star-linear" class="text-yellow-500 text-2xl" width="24"></iconify-icon>
               <span class="font-semibold text-slate-900">Meisterbetrieb</span>

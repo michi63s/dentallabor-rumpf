@@ -293,13 +293,13 @@
         </svg>
       </button>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-6 py-4 space-y-3">
-      <a href="#leistungen" onclick="setTimeout(()=>document.getElementById('mobile-menu').classList.add('hidden'),80)" class="block text-sm font-medium text-slate-700 py-2">Leistungen</a>
-      <a href="#prozess" onclick="setTimeout(()=>document.getElementById('mobile-menu').classList.add('hidden'),80)" class="block text-sm font-medium text-slate-700 py-2">Zusammenarbeit</a>
-      <a href="#ueber-uns" onclick="setTimeout(()=>document.getElementById('mobile-menu').classList.add('hidden'),80)" class="block text-sm font-medium text-slate-700 py-2">Über uns</a>
-      <a href="#karriere" onclick="setTimeout(()=>document.getElementById('mobile-menu').classList.add('hidden'),80)" class="block text-sm font-medium text-slate-700 py-2">Karriere</a>
-      <a href="#faq" onclick="setTimeout(()=>document.getElementById('mobile-menu').classList.add('hidden'),80)" class="block text-sm font-medium text-slate-700 py-2">FAQ</a>
-      <a href="#kontakt" onclick="setTimeout(()=>document.getElementById('mobile-menu').classList.add('hidden'),80)" class="block bg-blue-600 text-white text-center py-2.5 rounded-full text-sm font-medium mt-2">Anfrage stellen</a>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-6 py-4 space-y-3" style="position:relative;z-index:9999;">
+      <a href="#leistungen" class="mobile-nav-link block text-sm font-medium text-slate-700 py-2">Leistungen</a>
+      <a href="#prozess" class="mobile-nav-link block text-sm font-medium text-slate-700 py-2">Zusammenarbeit</a>
+      <a href="#ueber-uns" class="mobile-nav-link block text-sm font-medium text-slate-700 py-2">Über uns</a>
+      <a href="#karriere" class="mobile-nav-link block text-sm font-medium text-slate-700 py-2">Karriere</a>
+      <a href="#faq" class="mobile-nav-link block text-sm font-medium text-slate-700 py-2">FAQ</a>
+      <a href="#kontakt" class="mobile-nav-link block bg-blue-600 text-white text-center py-2.5 rounded-full text-sm font-medium mt-2">Anfrage stellen</a>
     </div>
   </nav>
 
@@ -1494,6 +1494,28 @@
         AOS.init({ once: true, duration: 600, offset: 60 });
       }
     });
+
+    // Mobile menu: use touchstart for instant response, no animation delay
+    (function () {
+      var menu = document.getElementById('mobile-menu');
+      document.querySelectorAll('.mobile-nav-link').forEach(function (link) {
+        // Disable all CSS transitions on these links
+        link.style.transition = 'none';
+        link.style.animation = 'none';
+        link.style.transform = 'none';
+        link.style.pointerEvents = 'auto';
+
+        link.addEventListener('touchstart', function (e) {
+          var href = link.getAttribute('href');
+          menu.classList.add('hidden');
+          if (href && href.startsWith('#')) {
+            e.preventDefault();
+            var target = document.querySelector(href);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, { passive: false });
+      });
+    })();
   </script>
 
 </body>

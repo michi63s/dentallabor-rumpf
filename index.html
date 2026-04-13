@@ -3,10 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dentallabor Rumpf – Zahntechnikermeister Nierstein</title>
-  <meta name="description" content="Hochwertiger Zahnersatz aus Meisterhand. Inhabergeführtes Dentallabor in Nierstein für Zahnarztpraxen in Rheinhessen und Rhein-Main. Florian Rumpf, Zahntechnikermeister.">
+  <title>Dentallabor Rumpf – Zahntechnikermeister in Nierstein | Rheinhessen</title>
+  <meta name="description" content="Inhabergeführtes Dentallabor in Nierstein (Rheinhessen). Florian Rumpf, Zahntechnikermeister – hochwertiger Zahnersatz, Kronen, Brücken & Implantate für Zahnarztpraxen in Rheinhessen und Rhein-Main.">
+  <meta name="keywords" content="Dentallabor Nierstein, Zahntechnik Rheinhessen, Zahntechnikermeister, Zahnersatz, Kronen, Brücken, Implantate, Dentallabor Rhein-Main, Florian Rumpf">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Florian Rumpf, Dentallabor Rumpf">
+  <link rel="canonical" href="https://dentallabor-rumpf.de/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dentallabor-rumpf.de/">
+  <meta property="og:title" content="Dentallabor Rumpf – Zahntechnikermeister in Nierstein">
+  <meta property="og:description" content="Inhabergeführtes Meisterlabor in Nierstein. Präziser Zahnersatz aus einer Hand – persönlich, zuverlässig, modern.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1200&q=80&fit=crop">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:site_name" content="Dentallabor Rumpf">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dentallabor Rumpf – Zahntechnikermeister in Nierstein">
+  <meta name="twitter:description" content="Inhabergeführtes Meisterlabor in Nierstein. Präziser Zahnersatz aus einer Hand – persönlich, zuverlässig, modern.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1200&q=80&fit=crop">
+
+  <!-- Structured Data: LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Dentallabor Rumpf",
+    "description": "Inhabergeführtes Dentallabor in Nierstein. Zahntechnikermeister Florian Rumpf – hochwertiger Zahnersatz für Zahnarztpraxen in Rheinhessen und Rhein-Main.",
+    "url": "https://dentallabor-rumpf.de",
+    "telephone": "",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nierstein",
+      "addressRegion": "Rheinland-Pfalz",
+      "addressCountry": "DE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 49.8765,
+      "longitude": 8.3401
+    },
+    "areaServed": ["Rheinhessen", "Rhein-Main", "Mainz", "Worms", "Oppenheim"],
+    "founder": {
+      "@type": "Person",
+      "name": "Florian Rumpf",
+      "jobTitle": "Zahntechnikermeister"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"]
+    },
+    "priceRange": "€€",
+    "currenciesAccepted": "EUR",
+    "paymentAccepted": "Invoice",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Zahntechnische Leistungen",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Keramikkronen & Brücken"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Implantatversorgung"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Totalprothesen"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "CAD/CAM Digitale Zahntechnik"}}
+      ]
+    }
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -352,7 +418,7 @@
       <nav class="menu">
 
         <div class="menu__item">
-          <a href="#leistungen" class="menu__item-link">Meisterlabor</a>
+          <div class="menu__item-link">Meisterlabor</div>
           <div class="marquee" aria-hidden="true">
             <div class="marquee__inner-wrap">
               <div class="marquee__inner">
@@ -368,7 +434,7 @@
         </div>
 
         <div class="menu__item">
-          <a href="#ueber-uns" class="menu__item-link">Made in Germany</a>
+          <div class="menu__item-link">Made in Germany</div>
           <div class="marquee" aria-hidden="true">
             <div class="marquee__inner-wrap">
               <div class="marquee__inner">
@@ -384,7 +450,7 @@
         </div>
 
         <div class="menu__item">
-          <a href="#ueber-uns" class="menu__item-link">Persönlich</a>
+          <div class="menu__item-link">Persönlich</div>
           <div class="marquee" aria-hidden="true">
             <div class="marquee__inner-wrap">
               <div class="marquee__inner">
@@ -400,7 +466,7 @@
         </div>
 
         <div class="menu__item">
-          <a href="#leistungen" class="menu__item-link">Digital &amp; Analog</a>
+          <div class="menu__item-link">Digital &amp; Analog</div>
           <div class="marquee" aria-hidden="true">
             <div class="marquee__inner-wrap">
               <div class="marquee__inner">
@@ -416,7 +482,7 @@
         </div>
 
         <div class="menu__item">
-          <a href="#prozess" class="menu__item-link">Regional</a>
+          <div class="menu__item-link">Regional</div>
           <div class="marquee" aria-hidden="true">
             <div class="marquee__inner-wrap">
               <div class="marquee__inner">
@@ -436,45 +502,49 @@
   </section>
 
   <!-- PROBLEM SOLUTION -->
-  <section class="pt-14 pb-10 bg-white/90">
+  <section class="pt-10 pb-8 md:pt-14 md:pb-10 bg-white/90">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center max-w-2xl mx-auto mb-10 space-y-3" data-aos="fade-up">
-        <span class="text-sm font-semibold text-blue-600 uppercase tracking-wider">Ihr Anspruch, unser Standard</span>
-        <h2 class="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight">Was Sie von Ihrem Dentallabor erwarten dürfen</h2>
-        <p class="text-slate-500">Wir verstehen, was Sie von einem Labor erwarten — und woran es bei vielen scheitert.</p>
+      <div class="text-center max-w-2xl mx-auto mb-6 md:mb-10 space-y-2 md:space-y-3" data-aos="fade-up">
+        <span class="text-xs md:text-sm font-semibold text-blue-600 uppercase tracking-wider">Ihr Anspruch, unser Standard</span>
+        <h2 class="text-2xl md:text-4xl font-semibold text-slate-900 tracking-tight">Was Sie von Ihrem Dentallabor erwarten dürfen</h2>
+        <p class="text-sm md:text-base text-slate-500 hidden md:block">Wir verstehen, was Sie von einem Labor erwarten — und woran es bei vielen scheitert.</p>
       </div>
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="group relative rounded-xl p-5 border overflow-hidden bg-emerald-50 border-emerald-100 hover:border-emerald-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-emerald-100/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
-          <div class="absolute top-0 right-0 w-20 h-20 bg-emerald-100/50 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-          <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors relative z-10">
-            <iconify-icon icon="solar:verified-check-linear" width="20"></iconify-icon>
+      <div class="grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-5">
+        <div class="group relative rounded-xl p-3 md:p-7 border overflow-hidden bg-emerald-50 border-emerald-100 hover:border-emerald-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-emerald-100/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+          <div class="absolute top-0 right-0 w-16 h-16 md:w-24 md:h-24 bg-emerald-100/50 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+          <div class="w-8 h-8 md:w-12 md:h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-2 md:mb-4 group-hover:bg-emerald-600 group-hover:text-white transition-colors relative z-10">
+            <iconify-icon icon="solar:verified-check-linear" width="16" class="md:hidden"></iconify-icon>
+            <iconify-icon icon="solar:verified-check-linear" width="22" class="hidden md:block"></iconify-icon>
           </div>
-          <h3 class="text-base font-semibold text-slate-900 mb-2 relative z-10">Passgenaue Qualität</h3>
-          <p class="text-sm text-slate-500 leading-relaxed relative z-10">Zahnersatz, der beim ersten Einsetzen passt — ohne Nacharbeit, ohne Zeitverlust für Ihre Praxis.</p>
+          <h3 class="text-xs md:text-lg font-semibold text-slate-900 mb-1 md:mb-2 relative z-10">Passgenaue Qualität</h3>
+          <p class="text-xs text-slate-500 leading-snug relative z-10 hidden md:block">Zahnersatz, der beim ersten Einsetzen passt — ohne Nacharbeit, ohne Zeitverlust für Ihre Praxis.</p>
         </div>
-        <div class="group relative rounded-xl p-5 border overflow-hidden bg-blue-50 border-blue-100 hover:border-blue-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-100/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
-          <div class="absolute top-0 right-0 w-20 h-20 bg-blue-100/50 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-          <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors relative z-10">
-            <iconify-icon icon="solar:phone-linear" width="20"></iconify-icon>
+        <div class="group relative rounded-xl p-3 md:p-7 border overflow-hidden bg-blue-50 border-blue-100 hover:border-blue-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-100/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+          <div class="absolute top-0 right-0 w-16 h-16 md:w-24 md:h-24 bg-blue-100/50 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+          <div class="w-8 h-8 md:w-12 md:h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-2 md:mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors relative z-10">
+            <iconify-icon icon="solar:phone-linear" width="16" class="md:hidden"></iconify-icon>
+            <iconify-icon icon="solar:phone-linear" width="22" class="hidden md:block"></iconify-icon>
           </div>
-          <h3 class="text-base font-semibold text-slate-900 mb-2 relative z-10">Direkte Erreichbarkeit</h3>
-          <p class="text-sm text-slate-500 leading-relaxed relative z-10">Ein Ansprechpartner, der Ihr Telefon abnimmt — persönlich, direkt, ohne Warteschleife.</p>
+          <h3 class="text-xs md:text-lg font-semibold text-slate-900 mb-1 md:mb-2 relative z-10">Direkte Erreichbarkeit</h3>
+          <p class="text-xs text-slate-500 leading-snug relative z-10 hidden md:block">Ein Ansprechpartner, der Ihr Telefon abnimmt — persönlich, direkt, ohne Warteschleife.</p>
         </div>
-        <div class="group relative rounded-xl p-5 border overflow-hidden bg-amber-50 border-amber-100 hover:border-amber-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-amber-100/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
-          <div class="absolute top-0 right-0 w-20 h-20 bg-amber-100/50 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-          <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-amber-600 group-hover:text-white transition-colors relative z-10">
-            <iconify-icon icon="solar:calendar-linear" width="20"></iconify-icon>
+        <div class="group relative rounded-xl p-3 md:p-7 border overflow-hidden bg-amber-50 border-amber-100 hover:border-amber-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-amber-100/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="0">
+          <div class="absolute top-0 right-0 w-16 h-16 md:w-24 md:h-24 bg-amber-100/50 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+          <div class="w-8 h-8 md:w-12 md:h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center mb-2 md:mb-4 group-hover:bg-amber-600 group-hover:text-white transition-colors relative z-10">
+            <iconify-icon icon="solar:calendar-linear" width="16" class="md:hidden"></iconify-icon>
+            <iconify-icon icon="solar:calendar-linear" width="22" class="hidden md:block"></iconify-icon>
           </div>
-          <h3 class="text-base font-semibold text-slate-900 mb-2 relative z-10">Verbindliche Termine</h3>
-          <p class="text-sm text-slate-500 leading-relaxed relative z-10">Liefertermine, die stehen — damit Sie Ihren Patienten verbindliche Zusagen machen können.</p>
+          <h3 class="text-xs md:text-lg font-semibold text-slate-900 mb-1 md:mb-2 relative z-10">Verbindliche Termine</h3>
+          <p class="text-xs text-slate-500 leading-snug relative z-10 hidden md:block">Liefertermine, die stehen — damit Sie Ihren Patienten verbindliche Zusagen machen können.</p>
         </div>
-        <div class="group relative rounded-xl p-5 border overflow-hidden bg-violet-50 border-violet-100 hover:border-violet-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-violet-100/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
-          <div class="absolute top-0 right-0 w-20 h-20 bg-violet-100/50 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-          <div class="w-10 h-10 bg-violet-100 text-violet-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-violet-600 group-hover:text-white transition-colors relative z-10">
-            <iconify-icon icon="solar:hand-shake-linear" width="20"></iconify-icon>
+        <div class="group relative rounded-xl p-3 md:p-7 border overflow-hidden bg-violet-50 border-violet-100 hover:border-violet-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-violet-100/50 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+          <div class="absolute top-0 right-0 w-16 h-16 md:w-24 md:h-24 bg-violet-100/50 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+          <div class="w-8 h-8 md:w-12 md:h-12 bg-violet-100 text-violet-600 rounded-xl flex items-center justify-center mb-2 md:mb-4 group-hover:bg-violet-600 group-hover:text-white transition-colors relative z-10">
+            <iconify-icon icon="solar:hand-shake-linear" width="16" class="md:hidden"></iconify-icon>
+            <iconify-icon icon="solar:hand-shake-linear" width="22" class="hidden md:block"></iconify-icon>
           </div>
-          <h3 class="text-base font-semibold text-slate-900 mb-2 relative z-10">Flexible Zusammenarbeit</h3>
-          <p class="text-sm text-slate-500 leading-relaxed relative z-10">Abstimmung auf Augenhöhe — ob Abdrücke oder Scandaten, wir arbeiten so, wie es für Ihre Praxis passt.</p>
+          <h3 class="text-xs md:text-lg font-semibold text-slate-900 mb-1 md:mb-2 relative z-10">Flexible Zusammenarbeit</h3>
+          <p class="text-xs text-slate-500 leading-snug relative z-10 hidden md:block">Abstimmung auf Augenhöhe — ob Abdrücke oder Scandaten, wir arbeiten so, wie es für Ihre Praxis passt.</p>
         </div>
       </div>
       <div class="text-center mt-8" data-aos="fade-up">
@@ -525,9 +595,8 @@
           </div>
           <h2 class="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight">Zahntechnik ist für mich nicht nur Beruf — sondern Anspruch.</h2>
           <div class="space-y-4 text-slate-600 leading-relaxed">
-            <p>Mein Name ist Florian Rumpf, ich bin Zahntechnikermeister und führe mein Labor in Nierstein mit einem klaren Grundsatz: Jede Arbeit, die unser Labor verlässt, muss so gut sein, dass ich sie selbst tragen würde.</p>
-            <p>Ich habe Dentallabor Rumpf gegründet, weil ich überzeugt bin, dass Zahntechnik von persönlicher Abstimmung lebt — nicht von anonymen Prozessen. In meinem Labor verbinde ich handwerkliche Präzision mit moderner digitaler Technik.</p>
-            <p class="font-medium text-slate-800">Wenn Sie einen Partner suchen, der mitdenkt, erreichbar ist und Qualität als Arbeitsstandard lebt — dann lassen Sie uns sprechen.</p>
+            <p>Ich bin Florian Rumpf, Zahntechnikermeister in Nierstein. Mein Labor steht für persönliche Abstimmung statt anonymer Prozesse — handwerkliche Präzision, kombiniert mit moderner CAD/CAM-Technologie.</p>
+            <p class="font-medium text-slate-800">Wenn Sie einen Partner suchen, der mitdenkt und erreichbar ist — lassen Sie uns sprechen.</p>
           </div>
           <div class="pt-4">
             <a href="#kontakt" class="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center gap-2 transition-colors">
@@ -1380,14 +1449,8 @@
     /* ── FlowingMenu ── */
     (function () {
       if (typeof gsap === 'undefined') return;
-      var defaults = { duration: 0.6, ease: 'expo.out' };
+      gsap.registerPlugin(ScrollTrigger);
 
-      function dist(x, y, x2, y2) { return (x-x2)*(x-x2)+(y-y2)*(y-y2); }
-      function closestEdge(mx, my, w, h) {
-        return dist(mx, my, w/2, 0) < dist(mx, my, w/2, h) ? 'top' : 'bottom';
-      }
-
-      // Init after full paint so offsetWidth is accurate
       window.addEventListener('load', function () {
         requestAnimationFrame(function () {
           requestAnimationFrame(function () {
@@ -1399,46 +1462,47 @@
               var firstPart = item.querySelector('.marquee__part');
               if (!marqueeEl || !innerWrap || !innerEl || !firstPart) return;
 
-              // Temporarily make marquee visible to measure content width
+              // ── Measure + clone for full-width coverage ──
               gsap.set(marqueeEl, { y: '0%' });
               gsap.set(innerWrap, { y: '0%' });
               var partW = firstPart.offsetWidth;
               var setW = 0;
               if (partW > 0) {
                 var origParts = item.querySelectorAll('.marquee__part');
-                setW = partW * origParts.length; // width of one original cycle
-                // Clone until content is wide enough to fill viewport without gaps
+                setW = partW * origParts.length;
                 var minCover = window.innerWidth * 2.5;
                 while (innerEl.scrollWidth < minCover) {
                   origParts.forEach(function(p) { innerEl.appendChild(p.cloneNode(true)); });
                 }
               }
-              // Hide again
+              // Start hidden — no inner-wrap counter, just marquee Y
               gsap.set(marqueeEl, { y: '101%' });
-              gsap.set(innerWrap, { y: '-101%' });
+              gsap.set(innerWrap, { y: '0%' });
               if (setW > 0) {
-                // Scroll by one cycle width — seamless because content repeats after setW
-                gsap.to(innerEl, { x: -setW, duration: 14, ease: 'none', repeat: -1 });
+                gsap.to(innerEl, { x: -setW, duration: 18, ease: 'none', repeat: -1 });
               }
 
-              item.addEventListener('mouseenter', function (e) {
-                var r = item.getBoundingClientRect();
-                var edge = closestEdge(e.clientX - r.left, e.clientY - r.top, r.width, r.height);
-                gsap.killTweensOf([marqueeEl, innerWrap]);
-                gsap.timeline({ defaults: defaults })
-                  .set(marqueeEl, { y: edge === 'top' ? '-101%' : '101%' }, 0)
-                  .set(innerWrap, { y: edge === 'top' ?  '101%' : '-101%' }, 0)
-                  .to([marqueeEl, innerWrap], { y: '0%' }, 0);
-              });
+              // ── Pure scroll-scrub: marquee Y tied directly to scroll position ──
+              // Dynamically calculate start so items are always closed on fresh page load.
+              // start is set 8% below the item's current viewport position, guaranteeing
+              // y=101% at scroll=0 regardless of hero height or screen size.
+              var rect = item.getBoundingClientRect();
+              var currentTopPct = (rect.top / window.innerHeight * 100);
+              var safeStart = Math.max(5, currentTopPct - 8).toFixed(1);
 
-              item.addEventListener('mouseleave', function (e) {
-                var r = item.getBoundingClientRect();
-                var edge = closestEdge(e.clientX - r.left, e.clientY - r.top, r.width, r.height);
-                gsap.killTweensOf([marqueeEl, innerWrap]);
-                gsap.timeline({ defaults: defaults })
-                  .to(marqueeEl, { y: edge === 'top' ? '-101%' : '101%' }, 0)
-                  .to(innerWrap, { y: edge === 'top' ?  '101%' : '-101%' }, 0);
-              });
+              gsap.fromTo(marqueeEl,
+                { y: '101%' },
+                {
+                  y: '0%',
+                  ease: 'none',
+                  scrollTrigger: {
+                    trigger: item,
+                    start: 'top ' + safeStart + '%',
+                    end:   'top 5%',
+                    scrub: 1.5
+                  }
+                }
+              );
             });
 
           });

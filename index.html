@@ -70,109 +70,14 @@
     }
   }
   </script>
-  <script src="./tw.js" async></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
-  <!-- Critical CSS: ensures nav, mobile menu, and primary buttons are styled and interactive
-       before tw.js (loaded async) finishes executing. -->
-  <style id="critical-css">
-    /* Nav: fixed top bar */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 50;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid #f1f5f9;
-    }
-    nav > div {
-      max-width: 80rem;
-      margin: 0 auto;
-      padding: 1rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    /* Hamburger button: always visible on mobile, always tappable */
-    nav button[aria-label="Menü"] {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.5rem;
-      color: #334155;
-      background: none;
-      border: none;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-      min-width: 44px;
-      min-height: 44px;
-      position: relative;
-      z-index: 60;
-      pointer-events: auto !important;
-    }
-    /* Mobile menu panel */
-    #mobile-menu {
-      background: #fff;
-      border-top: 1px solid #f1f5f9;
-      padding: 1rem 1.5rem;
-    }
-    #mobile-menu.hidden { display: none !important; }
-    #mobile-menu a {
-      display: block;
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: #374151;
-      padding: 0.5rem 0;
-      text-decoration: none;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-      min-height: 44px;
-      display: flex;
-      align-items: center;
-      pointer-events: auto !important;
-    }
-    #mobile-menu a:last-child {
-      background: #2563eb;
-      color: #fff;
-      text-align: center;
-      justify-content: center;
-      padding: 0.625rem 1rem;
-      border-radius: 9999px;
-      margin-top: 0.5rem;
-    }
-    /* Primary CTA buttons in hero */
-    a[href^="tel"], a[href="#kontakt"] {
-      pointer-events: auto !important;
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
-    }
-    /* Ensure all interactive elements are immediately tappable */
-    a, button, [onclick], summary, label[for], input, textarea, select {
-      pointer-events: auto !important;
-      touch-action: manipulation;
-    }
-    /* Hide desktop links on mobile until tw.js loads (prevents FOUC) */
-    @media (max-width: 767px) {
-      nav .hidden { display: none !important; }
-    }
-    @media (min-width: 768px) {
-      nav button[aria-label="Menü"] { display: none !important; }
-      #mobile-menu { display: none !important; }
-    }
-  </style>
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    * { -webkit-tap-highlight-color: transparent; }
-    /* AOS.css blocks pointer-events on [data-aos] until JS loads — fix immediately */
-    [data-aos] { pointer-events: auto !important; }
-    /* Native active press — no Tailwind required */
-    a:active, button:active { transform: scale(0.95); transition: transform 0.1s; }
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
@@ -404,11 +309,11 @@
           Präzision aus Meisterhand. Hochwertiger Zahnersatz, persönliche Abstimmung und verlässliche Lieferzeiten für Zahnarztpraxen in Rheinhessen und Rhein-Main.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 pt-4" data-aos="fade-up" data-aos-delay="300">
-          <a href="tel:+4961331234567" class="flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-full text-sm font-medium hover:bg-blue-700 transition-all hover:shadow-blue-200 hover:shadow-xl">
+          <a href="tel:+4961331234567" class="flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-4 rounded-full text-sm font-medium hover:bg-blue-700 transition-all hover:shadow-blue-200 hover:shadow-xl active:scale-95">
             <iconify-icon icon="solar:phone-calling-linear" width="20"></iconify-icon>
             Jetzt anrufen
           </a>
-          <a href="#kontakt" class="flex items-center justify-center gap-2 bg-white text-slate-700 border border-slate-200 px-8 py-4 rounded-full text-sm font-medium hover:bg-slate-50 hover:border-slate-300 transition-all">
+          <a href="#kontakt" class="flex items-center justify-center gap-2 bg-white text-slate-700 border border-slate-200 px-8 py-4 rounded-full text-sm font-medium hover:bg-slate-50 hover:border-slate-300 transition-all active:scale-95">
             Zusammenarbeit anfragen
             <iconify-icon icon="solar:arrow-right-linear" width="20"></iconify-icon>
           </a>
@@ -511,7 +416,7 @@
         </div>
       </div>
       <div class="text-center mt-8" data-aos="fade-up">
-        <a href="#ueber-uns" class="inline-flex items-center gap-2 bg-white text-slate-700 border border-slate-200 px-8 py-3.5 rounded-full text-sm font-medium hover:bg-slate-50 hover:border-slate-300 transition-all">
+        <a href="#ueber-uns" class="inline-flex items-center gap-2 bg-white text-slate-700 border border-slate-200 px-8 py-3.5 rounded-full text-sm font-medium hover:bg-slate-50 hover:border-slate-300 transition-all active:scale-95">
           Lernen Sie unser Labor kennen
           <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
         </a>
@@ -742,7 +647,7 @@
         <span class="px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-600">Alle Implantatsysteme</span>
       </div>
       <div class="text-center mt-12">
-        <a href="#kontakt" class="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-3.5 rounded-full text-sm font-medium hover:bg-blue-700 transition-all hover:shadow-blue-200 hover:shadow-lg">
+        <a href="#kontakt" class="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-8 py-3.5 rounded-full text-sm font-medium hover:bg-blue-700 transition-all hover:shadow-blue-200 hover:shadow-lg active:scale-95">
           Leistungen besprechen
           <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
         </a>
@@ -917,7 +822,7 @@
               </div>
             </div>
           </div>
-          <button onclick="openFunnel()" class="w-full bg-white text-slate-900 py-4 rounded-2xl text-sm font-semibold hover:bg-blue-50 transition-all shadow-xl shadow-black/20 cursor-pointer">
+          <button onclick="openFunnel()" class="w-full bg-white text-slate-900 py-4 rounded-2xl text-sm font-semibold hover:bg-blue-50 transition-all shadow-xl shadow-black/20 active:scale-95 cursor-pointer">
             Jetzt unkompliziert bewerben — kein Anschreiben nötig
           </button>
           <p class="text-center text-xs text-slate-500 mt-3">Normalerweise melden wir uns innerhalb von 48 Stunden.</p>
@@ -1083,7 +988,7 @@
               <textarea id="nachricht" name="nachricht" rows="4" placeholder="Beschreiben Sie kurz Ihr Anliegen oder Ihre Anfrage..." required
                 class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 transition-colors resize-none"></textarea>
             </div>
-            <button type="submit" class="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-3.5 rounded-full text-sm font-medium hover:bg-blue-700 transition-all hover:shadow-blue-200 hover:shadow-lg">
+            <button type="submit" class="w-full flex items-center justify-center gap-2 bg-blue-600 text-white py-3.5 rounded-full text-sm font-medium hover:bg-blue-700 transition-all hover:shadow-blue-200 hover:shadow-lg active:scale-95">
               Anfrage senden
               <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
             </button>
@@ -1196,7 +1101,7 @@
             </div>
           </label>
         </div>
-        <button onclick="funnelNext()" class="mt-6 w-full bg-blue-600 text-white py-3 rounded-full text-sm font-medium hover:bg-blue-500 transition-colors flex items-center justify-center gap-2">
+        <button onclick="funnelNext()" class="mt-6 w-full bg-blue-600 text-white py-3 rounded-full text-sm font-medium hover:bg-blue-500 transition-colors flex items-center justify-center gap-2 active:scale-95">
           Weiter <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
         </button>
       </div>
@@ -1233,7 +1138,7 @@
         </div>
         <div class="flex gap-3 mt-6">
           <button onclick="funnelBack()" class="flex-1 border border-white/10 text-slate-300 py-3 rounded-full text-sm font-medium hover:bg-white/10 transition-colors">Zurück</button>
-          <button onclick="funnelNext()" class="flex-[2] bg-blue-600 text-white py-3 rounded-full text-sm font-medium hover:bg-blue-500 transition-colors flex items-center justify-center gap-2">
+          <button onclick="funnelNext()" class="flex-[2] bg-blue-600 text-white py-3 rounded-full text-sm font-medium hover:bg-blue-500 transition-colors flex items-center justify-center gap-2 active:scale-95">
             Weiter <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
           </button>
         </div>
@@ -1262,7 +1167,7 @@
         </div>
         <div class="flex gap-3 mt-6">
           <button onclick="funnelBack()" class="flex-1 border border-white/10 text-slate-300 py-3 rounded-full text-sm font-medium hover:bg-white/10 transition-colors">Zurück</button>
-          <button onclick="funnelSubmit()" class="flex-[2] bg-blue-600 text-white py-3 rounded-full text-sm font-medium hover:bg-blue-500 transition-colors flex items-center justify-center gap-2">
+          <button onclick="funnelSubmit()" class="flex-[2] bg-blue-600 text-white py-3 rounded-full text-sm font-medium hover:bg-blue-500 transition-colors flex items-center justify-center gap-2 active:scale-95">
             Abschicken <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
           </button>
         </div>
@@ -1275,7 +1180,7 @@
         </div>
         <h3 class="text-xl font-semibold mb-2">Danke für deine Bewerbung!</h3>
         <p class="text-slate-400 text-sm leading-relaxed mb-8">Wir melden uns schnellstmöglich bei dir. Du hörst von uns — versprochen.</p>
-        <button onclick="closeFunnel()" class="bg-blue-600 text-white px-8 py-3 rounded-full text-sm font-medium hover:bg-blue-500 transition-colors">
+        <button onclick="closeFunnel()" class="bg-blue-600 text-white px-8 py-3 rounded-full text-sm font-medium hover:bg-blue-500 transition-colors active:scale-95">
           Schließen
         </button>
       </div>

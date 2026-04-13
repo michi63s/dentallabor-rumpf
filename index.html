@@ -6,6 +6,7 @@
   <title>Dentallabor Rumpf – Zahntechnikermeister Nierstein</title>
   <meta name="description" content="Hochwertiger Zahnersatz aus Meisterhand. Inhabergeführtes Dentallabor in Nierstein für Zahnarztpraxen in Rheinhessen und Rhein-Main. Florian Rumpf, Zahntechnikermeister.">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -154,6 +155,67 @@
       }
     }
 
+    /* ── FlowingMenu ── */
+    .flowing-menu { width: 100%; }
+    .menu__item {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(226,232,240,0.7);
+      background: rgba(255,255,255,0.97);
+    }
+    .menu__item:last-child { border-bottom: none; }
+    .menu__item-link {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      padding: 1rem 1.75rem;
+      text-decoration: none;
+      color: #1e293b;
+      font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+      font-weight: 600;
+      white-space: nowrap;
+      position: relative;
+      z-index: 2;
+      transition: color 0.25s, padding-left 0.25s;
+    }
+    .menu__item:hover .menu__item-link { color: #2563eb; padding-left: 2.25rem; }
+    .menu__item-icon { opacity: 0.55; flex-shrink: 0; transition: opacity 0.25s; }
+    .menu__item:hover .menu__item-icon { opacity: 1; }
+    .menu__item-arrow { margin-left: auto; opacity: 0; transform: translateX(-8px); transition: opacity 0.25s, transform 0.25s; }
+    .menu__item:hover .menu__item-arrow { opacity: 1; transform: translateX(0); }
+    .marquee {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      transform: translateY(101%);
+      background: #2563eb;
+      display: flex;
+      align-items: center;
+      z-index: 3;
+    }
+    .marquee__inner {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      white-space: nowrap;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0 2rem;
+      will-change: transform;
+    }
+    .marquee__inner span { flex-shrink: 0; }
+    @media (max-width: 640px) {
+      .menu__item-link { font-size: 0.9rem; padding: 0.875rem 1rem; }
+      .marquee__inner { font-size: 0.85rem; gap: 1rem; }
+    }
+
+    /* ── Funnel modal extras ── */
+    .funnel-option { transition: border-color 0.2s, background 0.2s; }
+    .funnel-chip { transition: border-color 0.2s, background 0.2s, color 0.2s; }
+
   </style>
 </head>
 <body class="bg-white text-slate-900 antialiased overflow-x-hidden">
@@ -188,6 +250,7 @@
         <a href="#leistungen" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Leistungen</a>
         <a href="#prozess" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Zusammenarbeit</a>
         <a href="#ueber-uns" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Über uns</a>
+        <a href="#karriere" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Karriere</a>
         <a href="#faq" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">FAQ</a>
       </div>
 
@@ -246,65 +309,129 @@
 
       <div class="relative">
         <div class="absolute -inset-4 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full blur-3xl opacity-30"></div>
-        <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 bg-white aspect-[4/3] flex flex-col items-center justify-center border border-slate-100 gap-6 p-10">
-          <!-- Decorative precision graphic -->
-          <div class="relative flex items-center justify-center">
-            <div class="absolute w-40 h-40 rounded-full border-2 border-blue-100 opacity-60"></div>
-            <div class="absolute w-28 h-28 rounded-full border border-blue-200 opacity-40"></div>
-            <div class="w-24 h-24 rounded-full bg-blue-50 flex items-center justify-center shadow-inner">
-              <span class="text-3xl font-semibold text-blue-600 tracking-tight">FR</span>
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-blue-900/10 border border-slate-100 aspect-[4/3]">
+          <img src="https://images.unsplash.com/photo-1629909615716-cbf7ae34e9a2?w=800&q=80&fit=crop&auto=format" alt="Zahntechnik Meisterlabor" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/10 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <p class="font-semibold text-white text-lg leading-none">Florian Rumpf</p>
+            <p class="text-sm text-white/70 mt-1 mb-4">Zahntechnikermeister · Nierstein</p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="px-3 py-1.5 bg-white/15 backdrop-blur-sm text-white text-xs font-medium rounded-full border border-white/20">Meisterbetrieb</span>
+              <span class="px-3 py-1.5 bg-white/15 backdrop-blur-sm text-white text-xs font-medium rounded-full border border-white/20">CAD/CAM</span>
+              <span class="px-3 py-1.5 bg-white/15 backdrop-blur-sm text-white text-xs font-medium rounded-full border border-white/20">Made in Germany</span>
             </div>
-          </div>
-          <div class="text-center space-y-1">
-            <p class="font-semibold text-slate-800 text-lg">Florian Rumpf</p>
-            <p class="text-sm text-slate-500">Zahntechnikermeister · Nierstein</p>
-          </div>
-          <div class="flex gap-3 flex-wrap justify-center">
-            <span class="px-3 py-1.5 bg-blue-50 text-blue-700 text-xs font-medium rounded-full border border-blue-100">Meisterbetrieb</span>
-            <span class="px-3 py-1.5 bg-slate-50 text-slate-600 text-xs font-medium rounded-full border border-slate-100">CAD/CAM</span>
-            <span class="px-3 py-1.5 bg-slate-50 text-slate-600 text-xs font-medium rounded-full border border-slate-100">Made in Germany</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TRUST CARDS (floating) -->
-  <section class="mt-[-60px] relative z-10 px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-4" data-aos="fade-up">
-        <a href="#leistungen" class="bg-white p-6 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center gap-3">
-          <div class="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
-            <iconify-icon icon="solar:diploma-linear" width="24"></iconify-icon>
-          </div>
-          <span class="text-sm font-semibold text-slate-700">Meisterlabor</span>
+  <!-- FLOWING MENU -->
+  <section class="relative z-10 overflow-hidden border-y border-slate-200/70" data-aos="fade-up">
+    <nav class="flowing-menu" aria-label="Highlights">
+
+      <div class="menu__item">
+        <a href="#leistungen" class="menu__item-link">
+          <iconify-icon icon="solar:diploma-linear" width="22" class="menu__item-icon" aria-hidden="true"></iconify-icon>
+          <span>Meisterlabor</span>
+          <iconify-icon icon="solar:arrow-right-linear" width="18" class="menu__item-arrow" aria-hidden="true"></iconify-icon>
         </a>
-        <a href="#ueber-uns" class="bg-white p-6 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center gap-3">
-          <div class="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-            <iconify-icon icon="solar:map-point-linear" width="24"></iconify-icon>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__inner">
+            <span>Meisterlabor</span><iconify-icon icon="solar:diploma-linear" width="16"></iconify-icon>
+            <span>Meisterbetrieb</span><iconify-icon icon="solar:star-rings-linear" width="16"></iconify-icon>
+            <span>Meisterlabor</span><iconify-icon icon="solar:diploma-linear" width="16"></iconify-icon>
+            <span>Meisterbetrieb</span><iconify-icon icon="solar:star-rings-linear" width="16"></iconify-icon>
+            <span>Meisterlabor</span><iconify-icon icon="solar:diploma-linear" width="16"></iconify-icon>
+            <span>Meisterbetrieb</span><iconify-icon icon="solar:star-rings-linear" width="16"></iconify-icon>
+            <span>Meisterlabor</span><iconify-icon icon="solar:diploma-linear" width="16"></iconify-icon>
+            <span>Meisterbetrieb</span><iconify-icon icon="solar:star-rings-linear" width="16"></iconify-icon>
           </div>
-          <span class="text-sm font-semibold text-slate-700">Made in Germany</span>
-        </a>
-        <a href="#ueber-uns" class="bg-white p-6 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center gap-3">
-          <div class="w-12 h-12 rounded-full bg-violet-50 text-violet-600 flex items-center justify-center group-hover:bg-violet-600 group-hover:text-white transition-colors">
-            <iconify-icon icon="solar:user-speak-rounded-linear" width="24"></iconify-icon>
-          </div>
-          <span class="text-sm font-semibold text-slate-700">Persönlich</span>
-        </a>
-        <a href="#leistungen" class="bg-white p-6 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center gap-3">
-          <div class="w-12 h-12 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center group-hover:bg-amber-600 group-hover:text-white transition-colors">
-            <iconify-icon icon="solar:cpu-linear" width="24"></iconify-icon>
-          </div>
-          <span class="text-sm font-semibold text-slate-700">Digital & Analog</span>
-        </a>
-        <a href="#prozess" class="bg-white p-6 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group flex flex-col items-center text-center gap-3 col-span-2 md:col-span-1">
-          <div class="w-12 h-12 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center group-hover:bg-rose-500 group-hover:text-white transition-colors">
-            <iconify-icon icon="solar:buildings-2-linear" width="24"></iconify-icon>
-          </div>
-          <span class="text-sm font-semibold text-slate-700">Regional</span>
-        </a>
+        </div>
       </div>
-    </div>
+
+      <div class="menu__item">
+        <a href="#ueber-uns" class="menu__item-link">
+          <iconify-icon icon="solar:map-point-linear" width="22" class="menu__item-icon" aria-hidden="true"></iconify-icon>
+          <span>Made in Germany</span>
+          <iconify-icon icon="solar:arrow-right-linear" width="18" class="menu__item-arrow" aria-hidden="true"></iconify-icon>
+        </a>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__inner">
+            <span>Made in Germany</span><iconify-icon icon="solar:map-point-linear" width="16"></iconify-icon>
+            <span>Nierstein</span><iconify-icon icon="solar:buildings-2-linear" width="16"></iconify-icon>
+            <span>Made in Germany</span><iconify-icon icon="solar:map-point-linear" width="16"></iconify-icon>
+            <span>Nierstein</span><iconify-icon icon="solar:buildings-2-linear" width="16"></iconify-icon>
+            <span>Made in Germany</span><iconify-icon icon="solar:map-point-linear" width="16"></iconify-icon>
+            <span>Nierstein</span><iconify-icon icon="solar:buildings-2-linear" width="16"></iconify-icon>
+            <span>Made in Germany</span><iconify-icon icon="solar:map-point-linear" width="16"></iconify-icon>
+            <span>Nierstein</span><iconify-icon icon="solar:buildings-2-linear" width="16"></iconify-icon>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu__item">
+        <a href="#ueber-uns" class="menu__item-link">
+          <iconify-icon icon="solar:user-speak-rounded-linear" width="22" class="menu__item-icon" aria-hidden="true"></iconify-icon>
+          <span>Persönlich</span>
+          <iconify-icon icon="solar:arrow-right-linear" width="18" class="menu__item-arrow" aria-hidden="true"></iconify-icon>
+        </a>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__inner">
+            <span>Persönlich</span><iconify-icon icon="solar:user-speak-rounded-linear" width="16"></iconify-icon>
+            <span>Direkt</span><iconify-icon icon="solar:phone-linear" width="16"></iconify-icon>
+            <span>Erreichbar</span><iconify-icon icon="solar:verified-check-linear" width="16"></iconify-icon>
+            <span>Persönlich</span><iconify-icon icon="solar:user-speak-rounded-linear" width="16"></iconify-icon>
+            <span>Direkt</span><iconify-icon icon="solar:phone-linear" width="16"></iconify-icon>
+            <span>Erreichbar</span><iconify-icon icon="solar:verified-check-linear" width="16"></iconify-icon>
+            <span>Persönlich</span><iconify-icon icon="solar:user-speak-rounded-linear" width="16"></iconify-icon>
+            <span>Direkt</span><iconify-icon icon="solar:phone-linear" width="16"></iconify-icon>
+            <span>Erreichbar</span><iconify-icon icon="solar:verified-check-linear" width="16"></iconify-icon>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu__item">
+        <a href="#leistungen" class="menu__item-link">
+          <iconify-icon icon="solar:cpu-linear" width="22" class="menu__item-icon" aria-hidden="true"></iconify-icon>
+          <span>Digital &amp; Analog</span>
+          <iconify-icon icon="solar:arrow-right-linear" width="18" class="menu__item-arrow" aria-hidden="true"></iconify-icon>
+        </a>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__inner">
+            <span>Digital &amp; Analog</span><iconify-icon icon="solar:cpu-linear" width="16"></iconify-icon>
+            <span>CAD/CAM</span><iconify-icon icon="solar:monitor-linear" width="16"></iconify-icon>
+            <span>Digital &amp; Analog</span><iconify-icon icon="solar:cpu-linear" width="16"></iconify-icon>
+            <span>CAD/CAM</span><iconify-icon icon="solar:monitor-linear" width="16"></iconify-icon>
+            <span>Digital &amp; Analog</span><iconify-icon icon="solar:cpu-linear" width="16"></iconify-icon>
+            <span>CAD/CAM</span><iconify-icon icon="solar:monitor-linear" width="16"></iconify-icon>
+            <span>Digital &amp; Analog</span><iconify-icon icon="solar:cpu-linear" width="16"></iconify-icon>
+            <span>CAD/CAM</span><iconify-icon icon="solar:monitor-linear" width="16"></iconify-icon>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu__item">
+        <a href="#prozess" class="menu__item-link">
+          <iconify-icon icon="solar:buildings-2-linear" width="22" class="menu__item-icon" aria-hidden="true"></iconify-icon>
+          <span>Regional</span>
+          <iconify-icon icon="solar:arrow-right-linear" width="18" class="menu__item-arrow" aria-hidden="true"></iconify-icon>
+        </a>
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__inner">
+            <span>Rheinhessen</span><iconify-icon icon="solar:map-point-linear" width="16"></iconify-icon>
+            <span>Rhein-Main</span><iconify-icon icon="solar:buildings-2-linear" width="16"></iconify-icon>
+            <span>Regional</span><iconify-icon icon="solar:buildings-2-linear" width="16"></iconify-icon>
+            <span>Rheinhessen</span><iconify-icon icon="solar:map-point-linear" width="16"></iconify-icon>
+            <span>Rhein-Main</span><iconify-icon icon="solar:buildings-2-linear" width="16"></iconify-icon>
+            <span>Regional</span><iconify-icon icon="solar:buildings-2-linear" width="16"></iconify-icon>
+            <span>Rheinhessen</span><iconify-icon icon="solar:map-point-linear" width="16"></iconify-icon>
+            <span>Rhein-Main</span><iconify-icon icon="solar:buildings-2-linear" width="16"></iconify-icon>
+          </div>
+        </div>
+      </div>
+
+    </nav>
   </section>
 
   <!-- PROBLEM SOLUTION -->
@@ -362,19 +489,17 @@
         <div class="order-2 md:order-1 relative" data-aos="fade-right">
           <div class="absolute -top-4 -left-4 w-24 h-24 bg-blue-100 rounded-full blur-2xl"></div>
           <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-indigo-100 rounded-full blur-2xl"></div>
-          <div class="relative rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-white shadow-xl w-full aspect-[4/5] flex flex-col items-center justify-center gap-6 p-8">
-            <div class="relative">
-              <div class="w-40 h-40 rounded-full bg-white shadow-lg flex items-center justify-center">
-                <span class="text-5xl font-semibold text-blue-600 tracking-tight">FR</span>
+          <div class="relative rounded-2xl border border-white shadow-xl w-full aspect-[4/5] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1588776814546-1ffb3c69c6b5?w=600&q=80&fit=crop&auto=format" alt="Dentallabor Zahntechnik Präzision" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-blue-900/75 via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6 text-white">
+              <div class="flex items-center gap-2 mb-1">
+                <div class="bg-blue-600 rounded-full p-1.5 shrink-0">
+                  <iconify-icon icon="solar:diploma-linear" width="16"></iconify-icon>
+                </div>
+                <p class="font-semibold text-lg">Florian Rumpf</p>
               </div>
-              <div class="absolute -bottom-2 -right-2 bg-blue-600 text-white rounded-full p-2">
-                <iconify-icon icon="solar:diploma-linear" width="20"></iconify-icon>
-              </div>
-            </div>
-            <div class="text-center">
-              <p class="font-semibold text-slate-800 text-xl">Florian Rumpf</p>
-              <p class="text-sm text-slate-500 mt-1">Zahntechnikermeister</p>
-              <p class="text-xs text-slate-400 mt-0.5">Nierstein, Rheinhessen</p>
+              <p class="text-sm text-white/70">Zahntechnikermeister · Nierstein, Rheinhessen</p>
             </div>
           </div>
           <!-- Floating card -->
@@ -728,36 +853,38 @@
       <div class="max-w-2xl mx-auto" data-aos="fade-up">
         <h3 class="text-xl font-semibold text-white text-center mb-8">Offene Stellen</h3>
         <div class="space-y-4 mb-10">
-          <div class="group bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-blue-400/30 transition-all">
+          <div class="group bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-blue-400/30 transition-all cursor-pointer" onclick="openFunnel('Zahntechniker:in')">
             <div class="flex items-start gap-4">
               <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-blue-500/30 transition-colors">
                 <iconify-icon icon="solar:case-minimalistic-linear" width="20" class="text-white"></iconify-icon>
               </div>
-              <div>
+              <div class="flex-1">
                 <h4 class="font-semibold text-white">Zahntechniker:in (m/w/d)</h4>
                 <p class="text-sm text-slate-400 mb-1">Vollzeit oder Teilzeit</p>
                 <p class="text-sm text-slate-400">Erfahrene Fachkraft für unser Laborteam</p>
               </div>
+              <iconify-icon icon="solar:arrow-right-linear" width="18" class="text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 mt-1"></iconify-icon>
             </div>
           </div>
-          <div class="group bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-blue-400/30 transition-all">
+          <div class="group bg-white/5 rounded-2xl p-6 border border-white/10 hover:border-blue-400/30 transition-all cursor-pointer" onclick="openFunnel('Auszubildende:r')">
             <div class="flex items-start gap-4">
               <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-blue-500/30 transition-colors">
                 <iconify-icon icon="solar:square-academic-cap-linear" width="20" class="text-white"></iconify-icon>
               </div>
-              <div>
+              <div class="flex-1">
                 <h4 class="font-semibold text-white">Auszubildende:r Zahntechnik (m/w/d)</h4>
                 <p class="text-sm text-slate-400 mb-1">Ausbildung</p>
                 <p class="text-sm text-slate-400">Starte deine Karriere in der Zahntechnik</p>
               </div>
+              <iconify-icon icon="solar:arrow-right-linear" width="18" class="text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 mt-1"></iconify-icon>
             </div>
           </div>
         </div>
         <div class="text-center">
-          <a href="#kontakt" class="inline-flex items-center justify-center gap-2 bg-white text-slate-900 px-8 py-3.5 rounded-full text-sm font-medium hover:bg-slate-100 transition-all shadow-lg active:scale-95">
+          <button onclick="openFunnel()" class="inline-flex items-center justify-center gap-2 bg-white text-slate-900 px-8 py-3.5 rounded-full text-sm font-medium hover:bg-slate-100 transition-all shadow-lg active:scale-95 cursor-pointer">
             Jetzt unkompliziert bewerben — kein Anschreiben nötig
             <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -950,6 +1077,7 @@
             <li><a href="#ueber-uns" class="hover:text-blue-600 transition-colors">Über uns</a></li>
             <li><a href="#leistungen" class="hover:text-blue-600 transition-colors">Leistungen</a></li>
             <li><a href="#prozess" class="hover:text-blue-600 transition-colors">Zusammenarbeit</a></li>
+            <li><a href="#karriere" class="hover:text-blue-600 transition-colors">Karriere</a></li>
             <li><a href="#kontakt" class="hover:text-blue-600 transition-colors">Kontakt</a></li>
           </ul>
         </div>
@@ -975,6 +1103,149 @@
       </div>
     </div>
   </footer>
+
+  <!-- RECRUITING FUNNEL MODAL -->
+  <div id="funnel-modal" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Bewerbung starten">
+    <div class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm" onclick="closeFunnel()"></div>
+    <div class="relative bg-slate-800 border border-white/10 rounded-3xl w-full max-w-md p-8 shadow-2xl text-white">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold">Bewerbung starten</h2>
+        <button onclick="closeFunnel()" class="text-slate-400 hover:text-white transition-colors p-1 rounded-full hover:bg-white/10" aria-label="Schließen">
+          <iconify-icon icon="solar:close-circle-linear" width="24"></iconify-icon>
+        </button>
+      </div>
+
+      <!-- Progress dots -->
+      <div class="flex gap-2 mb-8">
+        <div class="step-dot h-2 rounded-full transition-all duration-300" style="width:2rem;background:#3b82f6"></div>
+        <div class="step-dot h-2 rounded-full transition-all duration-300" style="width:0.5rem;background:rgba(255,255,255,0.2)"></div>
+        <div class="step-dot h-2 rounded-full transition-all duration-300" style="width:0.5rem;background:rgba(255,255,255,0.2)"></div>
+      </div>
+
+      <!-- Step 1: Position -->
+      <div id="funnel-step-1">
+        <h3 class="text-lg font-medium mb-1">Welche Stelle interessiert dich?</h3>
+        <p class="text-sm text-slate-400 mb-5">Wähle eine Option — wir melden uns schnell und unkompliziert.</p>
+        <div class="space-y-3">
+          <label class="funnel-option flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/5 cursor-pointer hover:bg-white/10">
+            <input type="radio" name="funnel-position" value="Zahntechniker:in" class="sr-only">
+            <div class="w-5 h-5 rounded-full border-2 border-white/30 flex items-center justify-center shrink-0 radio-indicator">
+              <div class="w-2.5 h-2.5 rounded-full bg-blue-400" style="opacity:0;transition:opacity 0.2s"></div>
+            </div>
+            <div>
+              <p class="font-medium text-sm">Zahntechniker:in (m/w/d)</p>
+              <p class="text-xs text-slate-400">Vollzeit oder Teilzeit</p>
+            </div>
+          </label>
+          <label class="funnel-option flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/5 cursor-pointer hover:bg-white/10">
+            <input type="radio" name="funnel-position" value="Auszubildende:r" class="sr-only">
+            <div class="w-5 h-5 rounded-full border-2 border-white/30 flex items-center justify-center shrink-0 radio-indicator">
+              <div class="w-2.5 h-2.5 rounded-full bg-blue-400" style="opacity:0;transition:opacity 0.2s"></div>
+            </div>
+            <div>
+              <p class="font-medium text-sm">Auszubildende:r Zahntechnik (m/w/d)</p>
+              <p class="text-xs text-slate-400">Ausbildung ab Herbst</p>
+            </div>
+          </label>
+          <label class="funnel-option flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/5 cursor-pointer hover:bg-white/10">
+            <input type="radio" name="funnel-position" value="Initiativbewerbung" class="sr-only">
+            <div class="w-5 h-5 rounded-full border-2 border-white/30 flex items-center justify-center shrink-0 radio-indicator">
+              <div class="w-2.5 h-2.5 rounded-full bg-blue-400" style="opacity:0;transition:opacity 0.2s"></div>
+            </div>
+            <div>
+              <p class="font-medium text-sm">Initiativbewerbung</p>
+              <p class="text-xs text-slate-400">Eigene Idee mitbringen</p>
+            </div>
+          </label>
+        </div>
+        <button onclick="funnelNext()" class="mt-6 w-full bg-blue-600 text-white py-3 rounded-full text-sm font-medium hover:bg-blue-500 transition-colors flex items-center justify-center gap-2 active:scale-95">
+          Weiter <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+        </button>
+      </div>
+
+      <!-- Step 2: Erfahrung -->
+      <div id="funnel-step-2" class="hidden">
+        <h3 class="text-lg font-medium mb-1">Noch zwei kurze Fragen</h3>
+        <p class="text-sm text-slate-400 mb-5">Damit wir uns optimal vorbereiten können.</p>
+        <div class="space-y-5">
+          <div>
+            <label class="text-sm font-medium text-slate-300 mb-2 block">Berufserfahrung</label>
+            <select id="funnel-erfahrung" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-400 transition-colors appearance-none">
+              <option value="" class="bg-slate-800 text-slate-300">Bitte wählen…</option>
+              <option value="Berufseinsteiger" class="bg-slate-800">Noch keine (Berufseinsteiger)</option>
+              <option value="1-3 Jahre" class="bg-slate-800">1–3 Jahre</option>
+              <option value="3-5 Jahre" class="bg-slate-800">3–5 Jahre</option>
+              <option value="5+ Jahre" class="bg-slate-800">Mehr als 5 Jahre</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-300 mb-3 block">Gewünschtes Pensum</label>
+            <div class="flex gap-2">
+              <label class="funnel-chip flex-1 text-center py-2.5 rounded-xl border border-white/10 bg-white/5 cursor-pointer text-sm hover:bg-white/10">
+                <input type="radio" name="funnel-pensum" value="Vollzeit" class="sr-only">Vollzeit
+              </label>
+              <label class="funnel-chip flex-1 text-center py-2.5 rounded-xl border border-white/10 bg-white/5 cursor-pointer text-sm hover:bg-white/10">
+                <input type="radio" name="funnel-pensum" value="Teilzeit" class="sr-only">Teilzeit
+              </label>
+              <label class="funnel-chip flex-1 text-center py-2.5 rounded-xl border border-white/10 bg-white/5 cursor-pointer text-sm hover:bg-white/10">
+                <input type="radio" name="funnel-pensum" value="Offen" class="sr-only">Offen
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-3 mt-6">
+          <button onclick="funnelBack()" class="flex-1 border border-white/10 text-slate-300 py-3 rounded-full text-sm font-medium hover:bg-white/10 transition-colors">Zurück</button>
+          <button onclick="funnelNext()" class="flex-[2] bg-blue-600 text-white py-3 rounded-full text-sm font-medium hover:bg-blue-500 transition-colors flex items-center justify-center gap-2 active:scale-95">
+            Weiter <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Kontakt -->
+      <div id="funnel-step-3" class="hidden">
+        <h3 class="text-lg font-medium mb-1">Wie können wir dich erreichen?</h3>
+        <p class="text-sm text-slate-400 mb-5">Kein Lebenslauf nötig — nur dein Name und eine Kontaktmöglichkeit.</p>
+        <div class="space-y-4">
+          <div>
+            <label class="text-sm font-medium text-slate-300 mb-2 block">Dein Name</label>
+            <input id="funnel-name" type="text" placeholder="Vorname Nachname"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-400 transition-colors">
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-300 mb-2 block">Telefon oder E-Mail</label>
+            <input id="funnel-kontakt" type="text" placeholder="0151 12345678 oder mail@beispiel.de"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-400 transition-colors">
+          </div>
+          <div>
+            <label class="text-sm font-medium text-slate-300 mb-2 block">Kurze Nachricht <span class="text-slate-500 font-normal">(optional)</span></label>
+            <textarea id="funnel-nachricht" rows="3" placeholder="Was machst du gerade, warum interessiert dich das Labor?"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-400 transition-colors resize-none"></textarea>
+          </div>
+        </div>
+        <div class="flex gap-3 mt-6">
+          <button onclick="funnelBack()" class="flex-1 border border-white/10 text-slate-300 py-3 rounded-full text-sm font-medium hover:bg-white/10 transition-colors">Zurück</button>
+          <button onclick="funnelSubmit()" class="flex-[2] bg-blue-600 text-white py-3 rounded-full text-sm font-medium hover:bg-blue-500 transition-colors flex items-center justify-center gap-2 active:scale-95">
+            Abschicken <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 4: Danke -->
+      <div id="funnel-step-4" class="hidden text-center py-4">
+        <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-5">
+          <iconify-icon icon="solar:check-circle-linear" width="36" class="text-blue-400"></iconify-icon>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Danke für deine Bewerbung!</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-8">Wir melden uns schnellstmöglich bei dir. Du hörst von uns — versprochen.</p>
+        <button onclick="closeFunnel()" class="bg-blue-600 text-white px-8 py-3 rounded-full text-sm font-medium hover:bg-blue-500 transition-colors active:scale-95">
+          Schließen
+        </button>
+      </div>
+
+    </div>
+  </div>
 
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
@@ -1101,6 +1372,166 @@
 
 
   <script>
+    /* ── FlowingMenu ── */
+    (function () {
+      if (typeof gsap === 'undefined') return;
+      var items = document.querySelectorAll('.menu__item');
+      items.forEach(function (item) {
+        var marquee = item.querySelector('.marquee');
+        var inner = item.querySelector('.marquee__inner');
+        if (!marquee || !inner) return;
+        var marqueeTween = null;
+
+        function closestEdge(e) {
+          var r = item.getBoundingClientRect();
+          return Math.abs(e.clientY - r.top) < Math.abs(e.clientY - r.bottom) ? 'top' : 'bottom';
+        }
+
+        item.addEventListener('mouseenter', function (e) {
+          var edge = closestEdge(e);
+          gsap.killTweensOf(marquee);
+          gsap.fromTo(marquee,
+            { y: edge === 'top' ? '-101%' : '101%' },
+            { y: '0%', duration: 0.42, ease: 'power3.out' }
+          );
+          if (!marqueeTween) {
+            var w = inner.scrollWidth / 2;
+            marqueeTween = gsap.to(inner, { x: -w, duration: 14, ease: 'none', repeat: -1 });
+          } else {
+            marqueeTween.play();
+          }
+        });
+
+        item.addEventListener('mouseleave', function (e) {
+          var edge = closestEdge(e);
+          gsap.killTweensOf(marquee);
+          gsap.to(marquee, { y: edge === 'top' ? '-101%' : '101%', duration: 0.42, ease: 'power3.in' });
+          if (marqueeTween) marqueeTween.pause();
+        });
+      });
+    })();
+
+    /* ── BorderGlow ── */
+    (function () {
+      function attachGlow(card, dark) {
+        card.addEventListener('pointermove', function (e) {
+          var r = card.getBoundingClientRect();
+          var cx = e.clientX - r.left - r.width / 2;
+          var cy = e.clientY - r.top - r.height / 2;
+          var dist = Math.sqrt(cx * cx + cy * cy);
+          var maxD = Math.sqrt((r.width / 2) * (r.width / 2) + (r.height / 2) * (r.height / 2));
+          var p = Math.min(dist / maxD, 1);
+          if (dark) {
+            card.style.boxShadow = '0 0 0 1px rgba(99,179,255,' + (p * 0.55) + '),inset 0 0 35px rgba(59,130,246,' + (p * 0.07) + ')';
+          } else {
+            card.style.boxShadow = '0 4px 28px rgba(59,130,246,' + (p * 0.13) + '),0 0 0 1px rgba(59,130,246,' + (p * 0.42) + ')';
+          }
+        });
+        card.addEventListener('pointerleave', function () {
+          card.style.boxShadow = '';
+        });
+      }
+      document.querySelectorAll('.bg-slate-50.rounded-2xl').forEach(function (c) { attachGlow(c, false); });
+      document.querySelectorAll('#kontakt .rounded-2xl').forEach(function (c) { attachGlow(c, false); });
+      document.querySelectorAll('#karriere .rounded-2xl').forEach(function (c) { attachGlow(c, true); });
+    })();
+
+    /* ── Recruiting Funnel ── */
+    (function () {
+      var step = 1;
+
+      function showStep(n) {
+        for (var i = 1; i <= 4; i++) {
+          var el = document.getElementById('funnel-step-' + i);
+          if (el) el.classList.toggle('hidden', i !== n);
+        }
+        var dots = document.querySelectorAll('.step-dot');
+        dots.forEach(function (dot, i) {
+          if (i === n - 1) { dot.style.width = '2rem'; dot.style.background = '#3b82f6'; }
+          else if (i < n - 1) { dot.style.width = '0.5rem'; dot.style.background = 'rgba(59,130,246,0.4)'; }
+          else { dot.style.width = '0.5rem'; dot.style.background = 'rgba(255,255,255,0.2)'; }
+        });
+      }
+
+      function setRadio(radio) {
+        var name = radio.name;
+        document.querySelectorAll('#funnel-modal input[name="' + name + '"]').forEach(function (r) {
+          var ind = r.closest('label') && r.closest('label').querySelector('.radio-indicator div');
+          if (ind) ind.style.opacity = r.checked ? '1' : '0';
+          var lbl = r.closest('label');
+          if (!lbl) return;
+          if (lbl.classList.contains('funnel-option')) {
+            lbl.style.borderColor = r.checked ? 'rgba(59,130,246,0.5)' : '';
+            lbl.style.background = r.checked ? 'rgba(59,130,246,0.1)' : '';
+          }
+          if (lbl.classList.contains('funnel-chip')) {
+            lbl.style.borderColor = r.checked ? '#3b82f6' : '';
+            lbl.style.background = r.checked ? 'rgba(59,130,246,0.2)' : '';
+            lbl.style.color = r.checked ? '#93c5fd' : '';
+          }
+        });
+      }
+
+      window.openFunnel = function (position) {
+        step = 1;
+        showStep(1);
+        // reset fields
+        document.querySelectorAll('#funnel-modal input[type="radio"]').forEach(function (r) {
+          r.checked = false; setRadio(r);
+        });
+        var sel = document.getElementById('funnel-erfahrung');
+        if (sel) sel.value = '';
+        ['funnel-name','funnel-kontakt','funnel-nachricht'].forEach(function(id) {
+          var el = document.getElementById(id); if (el) el.value = '';
+        });
+        document.getElementById('funnel-modal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        if (position) {
+          setTimeout(function () {
+            var r = document.querySelector('#funnel-modal input[name="funnel-position"][value="' + position + '"]');
+            if (r) { r.checked = true; setRadio(r); }
+          }, 30);
+        }
+      };
+
+      window.closeFunnel = function () {
+        document.getElementById('funnel-modal').classList.add('hidden');
+        document.body.style.overflow = '';
+      };
+
+      window.funnelNext = function () { if (step < 3) { step++; showStep(step); } };
+      window.funnelBack = function () { if (step > 1) { step--; showStep(step); } };
+
+      window.funnelSubmit = function () {
+        var name = (document.getElementById('funnel-name') || {}).value || '';
+        var kontakt = (document.getElementById('funnel-kontakt') || {}).value || '';
+        if (!name.trim() || !kontakt.trim()) {
+          var first = document.getElementById('funnel-name');
+          if (first) { first.style.borderColor = '#f87171'; first.focus(); }
+          return;
+        }
+        var pos = document.querySelector('#funnel-modal input[name="funnel-position"]:checked');
+        var pen = document.querySelector('#funnel-modal input[name="funnel-pensum"]:checked');
+        var erf = (document.getElementById('funnel-erfahrung') || {}).value || '';
+        var msg = (document.getElementById('funnel-nachricht') || {}).value || '';
+        var body = 'Bewerbung über Website\n\nStelle: ' + (pos ? pos.value : 'k.A.') +
+          '\nErfahrung: ' + (erf || 'k.A.') + '\nPensum: ' + (pen ? pen.value : 'k.A.') +
+          '\n\nName: ' + name + '\nKontakt: ' + kontakt +
+          (msg ? '\n\nNachricht: ' + msg : '');
+        window.location.href = 'mailto:info@dentallabor-rumpf.de' +
+          '?subject=' + encodeURIComponent('Bewerbung: ' + (pos ? pos.value : 'Initiativbewerbung')) +
+          '&body=' + encodeURIComponent(body);
+        step = 4; showStep(4);
+      };
+
+      document.addEventListener('change', function (e) {
+        if (e.target.type === 'radio' && e.target.closest('#funnel-modal')) setRadio(e.target);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeFunnel();
+      });
+    })();
+
     (function () {
       const blob1 = document.querySelector('.blob-1');
       const blob2 = document.querySelector('.blob-2');

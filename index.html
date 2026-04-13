@@ -214,7 +214,12 @@
 
     @media (max-width: 768px) {
       .teeth-float {
-        width: 58px !important;
+        width: 40px !important;
+        opacity: 0.16 !important;
+      }
+
+      .teeth-float img {
+        opacity: 0.9;
       }
 
       .blob-1,
@@ -1224,13 +1229,16 @@
 
       let x = 24;
       let y = 24;
-      let vx = window.innerWidth < 768 ? 0.58 : 0.72;
-      let vy = window.innerWidth < 768 ? 0.42 : 0.52;
+      const isMobile = window.innerWidth < 768;
+      let vx = isMobile ? 0.22 : 0.72;
+      let vy = isMobile ? 0.16 : 0.52;
       let direction = 1;
-      let targetOpacity = window.innerWidth < 768 ? 0.34 : 0.55;
+      let targetOpacity = isMobile ? 0.16 : 0.55;
       let currentOpacity = 0;
       let visibleFrames = 0;
       let hiddenFrames = 0;
+      let lastLightCheck = true;
+      let lastLightCheckAt = 0;
 
       function isLightArea(sampleX, sampleY) {
         const previousVisibility = el.style.visibility;
@@ -1260,7 +1268,7 @@
         img.style.transform = `scaleX(${direction})`;
       }
 
-      function tick() {
+      function tick(now) {
         const w = el.offsetWidth;
         const h = el.offsetHeight;
         const maxX = window.innerWidth - w;
@@ -1283,10 +1291,20 @@
         const sampleX = Math.max(0, Math.min(window.innerWidth - 1, x + w * 0.5));
         const sampleY = Math.max(0, Math.min(window.innerHeight - 1, y + h * 0.5));
 
-        const lightArea = isLightArea(sampleX, sampleY);
+        let lightArea;
+        if (isMobile) {
+          if (!lastLightCheckAt || now - lastLightCheckAt > 400) {
+            lastLightCheck = isLightArea(sampleX, sampleY);
+            lastLightCheckAt = now;
+          }
+          lightArea = lastLightCheck;
+        } else {
+          lightArea = isLightArea(sampleX, sampleY);
+        }
+
         const nearEdge = isNearViewportEdge(sampleX, sampleY);
 
-        const baseOpacity = window.innerWidth < 768 ? 0.34 : 0.55;
+        const baseOpacity = isMobile ? 0.16 : 0.55;
 
         if (lightArea && nearEdge) {
           visibleFrames += 1;
@@ -1296,13 +1314,13 @@
           visibleFrames = 0;
         }
 
-        const shouldShow = visibleFrames > 8 && hiddenFrames < 2;
+        const shouldShow = visibleFrames > (isMobile ? 4 : 8) && hiddenFrames < 2;
 
         targetOpacity = shouldShow ? baseOpacity : 0;
-        currentOpacity += (targetOpacity - currentOpacity) * 0.075;
+        currentOpacity += (targetOpacity - currentOpacity) * (isMobile ? 0.045 : 0.075);
 
         el.style.opacity = currentOpacity.toFixed(3);
-        el.style.transform = `translate(${x}px, ${y}px)`;
+        el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 
         requestAnimationFrame(tick);
       }

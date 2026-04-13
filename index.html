@@ -84,6 +84,8 @@
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    /* AOS sets pointer-events:none on [data-aos] elements until JS loads – override immediately */
+    [data-aos] { pointer-events: auto !important; }
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #f1f5f9; }
     ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }

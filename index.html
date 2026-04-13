@@ -1227,106 +1227,60 @@
       const img = el ? el.querySelector('img') : null;
       if (!el || !img) return;
 
-      let x = 24;
-      let y = 24;
       const isMobile = window.innerWidth < 768;
-      let vx = isMobile ? 0.22 : 0.72;
-      let vy = isMobile ? 0.16 : 0.52;
-      let direction = 1;
-      let targetOpacity = isMobile ? 0.16 : 0.55;
-      let currentOpacity = 0;
-      let visibleFrames = 0;
-      let hiddenFrames = 0;
-      let lastLightCheck = true;
-      let lastLightCheckAt = 0;
 
-      function isLightArea(sampleX, sampleY) {
-        const previousVisibility = el.style.visibility;
-        el.style.visibility = 'hidden';
-        const hit = document.elementFromPoint(sampleX, sampleY);
-        el.style.visibility = previousVisibility || 'visible';
-
-        if (!hit) return true;
-
-        const darkContainer = hit.closest('#prozess, #karriere, .bg-slate-900, .bg-slate-800, .bg-blue-600');
-        return !darkContainer;
-      }
-
-      function isNearViewportEdge(sampleX, sampleY) {
-        const marginX = window.innerWidth * 0.18;
-        const marginY = window.innerHeight * 0.16;
-        return (
-          sampleX < marginX ||
-          sampleX > window.innerWidth - marginX ||
-          sampleY < marginY ||
-          sampleY > window.innerHeight - marginY
-        );
-      }
-
-      function flipDirection() {
-        direction *= -1;
-        img.style.transform = `scaleX(${direction})`;
-      }
-
-      function tick(now) {
-        const w = el.offsetWidth;
-        const h = el.offsetHeight;
-        const maxX = window.innerWidth - w;
-        const maxY = window.innerHeight - h;
-
-        x += vx;
-        y += vy;
-
-        if (x <= 0 || x >= maxX) {
-          vx *= -1;
-          x = Math.max(0, Math.min(x, maxX));
-          flipDirection();
+      if (isMobile) {
+        // MOBILE: hardcoded, no DOM queries, scroll-based fade
+        let x = 20, y = 20, vx = 0.2, vy = 0.14, direction = 1, currentOpacity = 0;
+        const FADE_START = 500, FADE_END = 700, BASE_OP = 0.22;
+        img.style.transform = 'scaleX(1)';
+        function tick() {
+          const w = el.offsetWidth || 40, h = el.offsetHeight || 40;
+          const maxX = window.innerWidth - w, maxY = window.innerHeight - h;
+          x += vx; y += vy;
+          if (x <= 0 || x >= maxX) { vx *= -1; x = Math.max(0, Math.min(x, maxX)); direction *= -1; img.style.transform = `scaleX(${direction})`; }
+          if (y <= 0 || y >= maxY) { vy *= -1; y = Math.max(0, Math.min(y, maxY)); }
+          const s = window.scrollY || 0;
+          const t = s < FADE_START ? BASE_OP : s > FADE_END ? 0 : BASE_OP * (1 - (s - FADE_START) / (FADE_END - FADE_START));
+          currentOpacity += (t - currentOpacity) * 0.04;
+          el.style.opacity = currentOpacity.toFixed(3);
+          el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+          requestAnimationFrame(tick);
         }
+        requestAnimationFrame(tick);
 
-        if (y <= 0 || y >= maxY) {
-          vy *= -1;
-          y = Math.max(0, Math.min(y, maxY));
+      } else {
+        // DESKTOP: original logic unchanged
+        let x = 24, y = 24, vx = 0.72, vy = 0.52, direction = 1, targetOpacity = 0.55, currentOpacity = 0, visibleFrames = 0, hiddenFrames = 0;
+        function isLightArea(sx, sy) {
+          const pv = el.style.visibility; el.style.visibility = 'hidden';
+          const hit = document.elementFromPoint(sx, sy); el.style.visibility = pv || 'visible';
+          if (!hit) return true;
+          return !hit.closest('#prozess, #karriere, .bg-slate-900, .bg-slate-800, .bg-blue-600');
         }
-
-        const sampleX = Math.max(0, Math.min(window.innerWidth - 1, x + w * 0.5));
-        const sampleY = Math.max(0, Math.min(window.innerHeight - 1, y + h * 0.5));
-
-        let lightArea;
-        if (isMobile) {
-          if (!lastLightCheckAt || now - lastLightCheckAt > 400) {
-            lastLightCheck = isLightArea(sampleX, sampleY);
-            lastLightCheckAt = now;
-          }
-          lightArea = lastLightCheck;
-        } else {
-          lightArea = isLightArea(sampleX, sampleY);
+        function isNearViewportEdge(sx, sy) {
+          const mx = window.innerWidth * 0.18, my = window.innerHeight * 0.16;
+          return sx < mx || sx > window.innerWidth - mx || sy < my || sy > window.innerHeight - my;
         }
-
-        const nearEdge = isNearViewportEdge(sampleX, sampleY);
-
-        const baseOpacity = isMobile ? 0.16 : 0.55;
-
-        if (lightArea && nearEdge) {
-          visibleFrames += 1;
-          hiddenFrames = 0;
-        } else {
-          hiddenFrames += 1;
-          visibleFrames = 0;
+        function tick() {
+          const w = el.offsetWidth, h = el.offsetHeight;
+          const maxX = window.innerWidth - w, maxY = window.innerHeight - h;
+          x += vx; y += vy;
+          if (x <= 0 || x >= maxX) { vx *= -1; x = Math.max(0, Math.min(x, maxX)); direction *= -1; img.style.transform = `scaleX(${direction})`; }
+          if (y <= 0 || y >= maxY) { vy *= -1; y = Math.max(0, Math.min(y, maxY)); }
+          const sx = Math.max(0, Math.min(window.innerWidth - 1, x + w * 0.5));
+          const sy = Math.max(0, Math.min(window.innerHeight - 1, y + h * 0.5));
+          if (isLightArea(sx, sy) && isNearViewportEdge(sx, sy)) { visibleFrames++; hiddenFrames = 0; }
+          else { hiddenFrames++; visibleFrames = 0; }
+          targetOpacity = (visibleFrames > 8 && hiddenFrames < 2) ? 0.55 : 0;
+          currentOpacity += (targetOpacity - currentOpacity) * 0.075;
+          el.style.opacity = currentOpacity.toFixed(3);
+          el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+          requestAnimationFrame(tick);
         }
-
-        const shouldShow = visibleFrames > (isMobile ? 4 : 8) && hiddenFrames < 2;
-
-        targetOpacity = shouldShow ? baseOpacity : 0;
-        currentOpacity += (targetOpacity - currentOpacity) * (isMobile ? 0.045 : 0.075);
-
-        el.style.opacity = currentOpacity.toFixed(3);
-        el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-
+        img.style.transform = 'scaleX(1)';
         requestAnimationFrame(tick);
       }
-
-      img.style.transform = 'scaleX(1)';
-      requestAnimationFrame(tick);
     })();
   </script>
 

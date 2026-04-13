@@ -70,13 +70,102 @@
     }
   }
   </script>
-  <script src="./tw.js"></script>
+  <script src="./tw.js" async></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <!-- Critical CSS: ensures nav, mobile menu, and primary buttons are styled and interactive
+       before tw.js (loaded async) finishes executing. -->
+  <style id="critical-css">
+    /* Nav: fixed top bar */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #f1f5f9;
+    }
+    nav > div {
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    /* Hamburger button: always visible on mobile, always tappable */
+    nav button[aria-label="Menü"] {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      color: #334155;
+      background: none;
+      border: none;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      min-width: 44px;
+      min-height: 44px;
+      position: relative;
+      z-index: 60;
+      pointer-events: auto !important;
+    }
+    /* Mobile menu panel */
+    #mobile-menu {
+      background: #fff;
+      border-top: 1px solid #f1f5f9;
+      padding: 1rem 1.5rem;
+    }
+    #mobile-menu.hidden { display: none !important; }
+    #mobile-menu a {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #374151;
+      padding: 0.5rem 0;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      pointer-events: auto !important;
+    }
+    #mobile-menu a:last-child {
+      background: #2563eb;
+      color: #fff;
+      text-align: center;
+      justify-content: center;
+      padding: 0.625rem 1rem;
+      border-radius: 9999px;
+      margin-top: 0.5rem;
+    }
+    /* Primary CTA buttons in hero */
+    a[href^="tel"], a[href="#kontakt"] {
+      pointer-events: auto !important;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Ensure all interactive elements are immediately tappable */
+    a, button, [onclick], summary, label[for], input, textarea, select {
+      pointer-events: auto !important;
+      touch-action: manipulation;
+    }
+    /* Hide desktop links on mobile until tw.js loads (prevents FOUC) */
+    @media (max-width: 767px) {
+      nav .hidden { display: none !important; }
+    }
+    @media (min-width: 768px) {
+      nav button[aria-label="Menü"] { display: none !important; }
+      #mobile-menu { display: none !important; }
+    }
+  </style>
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
     * { -webkit-tap-highlight-color: transparent; }
